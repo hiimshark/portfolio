@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lê Hoàng Vũ | Hybrid Marketer: Creative Content x Web & Ads Execution</title>
-  <meta name="description" content="Portfolio của Lê Hoàng Vũ - Sinh viên năm 3 Marketing Truyền Thông ĐH Văn Hiến, kết hợp kinh nghiệm Agency (Video Content, Livestream, Facebook Ads) với năng lực tự xây dựng Landing Page, Web Bán Hàng và Web Tĩnh.">
+  <title>Lê Hoàng Vũ | Hybrid Marketer: Creative Agency x Web Builder & Ads</title>
+  <meta name="description" content="Portfolio cá nhân của Lê Hoàng Vũ (Cá) - Sinh viên năm 3 Marketing Truyền Thông ĐH Văn Hiến. Giao thoa giữa sáng tạo Agency (Video Content, Livestream) và kỹ thuật thực thi (Web Builder, Facebook Ads, CRO).">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS Play CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,34 +23,26 @@
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            brand: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              400: '#4ade80',
-              500: '#22c55e',
-              600: '#16a34a',
-              neon: '#10b981',
-              cyan: '#06b6d4',
-              accent: '#8b5cf6',
-              amber: '#f59e0b',
-              dark: '#080c14',
-              card: '#0e1626',
-              border: '#1a2639'
-            }
-          },
-          animation: {
-            'glow-pulse': 'glow 3.5s ease-in-out infinite',
-            'float': 'float 4s ease-in-out infinite',
-          },
-          keyframes: {
-            glow: {
-              '0%, 100%': { opacity: '0.35', transform: 'scale(1)' },
-              '50%': { opacity: '0.75', transform: 'scale(1.08)' },
+            surface: {
+              base: '#070a11',
+              card: '#0c1220',
+              elevated: '#111a2e',
+              border: 'rgba(255, 255, 255, 0.08)',
+              borderHover: 'rgba(16, 185, 129, 0.28)'
             },
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-6px)' },
+            accent: {
+              DEFAULT: '#10b981',
+              hover: '#059669',
+              light: '#34d399',
+              dim: 'rgba(16, 185, 129, 0.12)',
+              cyan: '#06b6d4',
+              amber: '#f59e0b'
             }
+          },
+          boxShadow: {
+            'glow-sm': '0 0 20px -5px rgba(16, 185, 129, 0.15)',
+            'glow-card': '0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.08)',
+            'capsule': '0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }
         }
       }
@@ -64,394 +56,428 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
-    .bg-grid-pattern {
-      background-size: 34px 34px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    /* Architectural subtle dot texture */
+    .bg-fine-dots {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
     }
-    .glass-nav {
-      background: rgba(8, 12, 20, 0.88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+    
+    /* Tactile micro-transitions */
+    .tactile-btn {
+      transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .glass-card {
-      background: rgba(14, 22, 38, 0.72);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+    .tactile-btn:active {
+      transform: scale(0.975);
     }
-    .glass-card:hover {
-      border-color: rgba(16, 185, 129, 0.35);
-      box-shadow: 0 12px 32px -10px rgba(16, 185, 129, 0.18);
+
+    /* Editorial card border highlight */
+    .editorial-card {
+      background-color: #0c1220;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
     }
+    .editorial-card:hover {
+      border-color: rgba(16, 185, 129, 0.28);
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7), 0 0 20px -6px rgba(16, 185, 129, 0.12);
+    }
+
+    /* Refined scrollbar */
     ::-webkit-scrollbar {
-      width: 7px;
+      width: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #080c14;
+      background: #070a11;
     }
     ::-webkit-scrollbar-thumb {
-      background: #1a2639;
-      border-radius: 4px;
+      background: #1b263b;
+      border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #10b981;
     }
   </style>
 </head>
-<body class="bg-brand-dark text-slate-200 font-sans antialiased selection:bg-brand-neon selection:text-black min-h-screen relative overflow-x-hidden">
+<body class="bg-surface-base text-slate-200 font-sans antialiased selection:bg-accent selection:text-black min-h-screen relative overflow-x-hidden">
 
-  <!-- Ambient Light Backdrops -->
-  <div class="fixed top-0 left-1/4 w-[520px] h-[520px] bg-brand-neon/10 rounded-full blur-[140px] pointer-events-none -z-10 animate-glow-pulse"></div>
-  <div class="fixed bottom-1/3 right-8 w-[460px] h-[460px] bg-brand-cyan/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-  <div class="fixed top-1/2 left-2/3 w-[320px] h-[320px] bg-brand-accent/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-  <div class="fixed inset-0 bg-grid-pattern pointer-events-none -z-20 opacity-45"></div>
+  <!-- Subtle Ambient Texture (Replaces gaudy blur blobs) -->
+  <div class="fixed inset-0 bg-fine-dots pointer-events-none opacity-40 z-0"></div>
 
-  <!-- NAVIGATION HEADER (THIẾT KẾ LẠI: KHÔNG RỚT DÒNG, FLOATING PILL SANG TRỌNG) -->
-  <header class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-white/5 transition-all duration-300">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-      <!-- Logo: Lê Hoàng Vũ -->
-      <a href="#hero" class="flex items-center gap-3 shrink-0 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-neon via-brand-cyan to-brand-accent flex items-center justify-center font-black text-black text-sm shadow-lg shadow-brand-neon/20 group-hover:scale-105 transition-transform">
-          LHV
+  <!-- FLOATING CAPSULE NAVBAR (High-end Glassmorphism) -->
+  <header class="fixed top-0 left-0 right-0 z-40 px-3 sm:px-6 pt-3.5 pb-2 transition-all">
+    <div class="max-w-5xl mx-auto bg-surface-card/85 backdrop-blur-xl border border-white/10 rounded-full px-4 sm:px-5 h-14 flex items-center justify-between shadow-capsule">
+      
+      <!-- Logo: LHV Mark -->
+      <a href="#hero" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-8 h-8 rounded-full bg-accent text-black font-mono font-bold text-xs flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+          HV
         </div>
         <div class="flex flex-col">
-          <div class="font-bold text-white text-sm tracking-wide flex items-center gap-1.5 whitespace-nowrap">
+          <span class="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5 whitespace-nowrap">
             Lê Hoàng Vũ
-            <span class="inline-block w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse"></span>
-          </div>
-          <span class="text-[10px] text-slate-400 font-mono tracking-wider whitespace-nowrap">CREATIVE CONTENT x WEB BUILDER</span>
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+          </span>
+          <span class="text-[9px] text-slate-400 font-mono tracking-wider -mt-0.5 whitespace-nowrap">HYBRID MARKETER</span>
         </div>
       </a>
 
-      <!-- Desktop Nav: Dạng Floating Capsule Pill, tuyệt đối không gãy dòng -->
-      <nav class="hidden lg:flex items-center gap-1 bg-slate-900/80 border border-slate-700/60 rounded-full px-3 py-1 text-xs xl:text-sm font-medium text-slate-300 shadow-inner backdrop-blur-md">
-        <a href="#about" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all whitespace-nowrap">Về tôi</a>
-        <a href="#skills" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all whitespace-nowrap">Core Weapon</a>
-        <a href="#calculator" class="px-3 py-1.5 rounded-full hover:text-brand-cyan hover:bg-white/10 transition-all whitespace-nowrap flex items-center gap-1.5">
-          <i data-lucide="calculator" class="w-3.5 h-3.5 text-brand-cyan"></i>
+      <!-- Desktop Links: Single-Line Capsule -->
+      <nav class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300">
+        <a href="#about" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap">Về tôi</a>
+        <a href="#skills" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap">Core Weapon</a>
+        <a href="#calculator" class="px-3 py-1.5 rounded-full hover:text-accent-cyan hover:bg-white/5 transition-colors flex items-center gap-1.5 whitespace-nowrap">
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-accent-cyan"></i>
           CRO Simulator
         </a>
-        <a href="#projects" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all whitespace-nowrap">Dự án của tôi</a>
-        <a href="#workflow" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all whitespace-nowrap">Quy trình</a>
-        <a href="#contact" class="px-3 py-1.5 rounded-full hover:text-brand-neon hover:bg-white/10 transition-all whitespace-nowrap">Liên hệ</a>
+        <a href="#projects" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap">Dự án của tôi</a>
+        <a href="#workflow" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap">Quy trình</a>
+        <a href="#contact" class="px-3 py-1.5 rounded-full hover:text-accent hover:bg-white/5 transition-colors whitespace-nowrap">Liên hệ</a>
       </nav>
 
-      <!-- Action & Quick Pill -->
+      <!-- Right CTAs -->
       <div class="flex items-center gap-2.5 shrink-0">
-        <div class="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-mono whitespace-nowrap">
-          <span class="w-2 h-2 rounded-full bg-brand-neon animate-ping"></span>
-          <span>Gen Z 2004 • Ready to Work</span>
-        </div>
-        <a href="#contact" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-xl bg-brand-neon text-black hover:bg-emerald-400 transition-all shadow-md shadow-brand-neon/20 hover:shadow-brand-neon/40 transform hover:-translate-y-0.5 whitespace-nowrap">
-          Hợp tác ngay
+        <a href="#contact" class="tactile-btn hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-accent hover:bg-accent-hover text-black font-semibold text-xs shadow-glow-sm whitespace-nowrap">
+          <span>Hợp tác ngay</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
         </a>
 
-        <!-- Mobile & Tablet Hamburger Menu Toggle -->
-        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle navigation">
-          <i id="mobile-menu-icon" data-lucide="menu" class="w-5 h-5"></i>
+        <!-- Mobile Drawer Toggle -->
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors" aria-label="Toggle navigation">
+          <i id="mobile-menu-icon" data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Drawer Menu Dropdown -->
-    <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 py-4 space-y-2 backdrop-blur-xl animate-fadeIn">
-      <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/5">Về tôi</a>
-      <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/5">Core Weapon</a>
-      <a href="#calculator" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-brand-cyan hover:bg-white/5 flex items-center gap-2">
-        <i data-lucide="calculator" class="w-4 h-4"></i>
+    <!-- Mobile Drawer Dropdown -->
+    <div id="mobile-menu-drawer" class="hidden md:hidden max-w-5xl mx-auto mt-2 bg-surface-card/95 backdrop-blur-xl border border-white/10 rounded-2xl p-3 space-y-1 shadow-2xl">
+      <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-200 hover:bg-white/5">Về tôi</a>
+      <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-200 hover:bg-white/5">Core Weapon</a>
+      <a href="#calculator" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-accent-cyan hover:bg-white/5 flex items-center gap-2">
+        <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
         CRO Simulator
       </a>
-      <a href="#projects" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/5">Dự án của tôi</a>
-      <a href="#workflow" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/5">Quy trình</a>
-      <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-brand-neon hover:bg-white/5 font-semibold">Liên hệ với tôi</a>
+      <a href="#projects" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-200 hover:bg-white/5">Dự án của tôi</a>
+      <a href="#workflow" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-200 hover:bg-white/5">Quy trình</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-accent hover:bg-white/5 font-semibold">Liên hệ trực tiếp</a>
     </div>
   </header>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 space-y-24 sm:space-y-28">
+  <!-- MAIN VIEWPORT CONTENT -->
+  <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-20 space-y-20 sm:space-y-24">
 
-    <!-- 1. HERO SECTION -->
-    <section id="hero" class="relative pt-6 sm:pt-12 pb-4 flex flex-col items-center text-center">
-      <!-- Tag / Badge -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm font-mono text-slate-300 mb-6 backdrop-blur-md">
-        <span class="text-base">🎬</span>
-        <span class="text-brand-neon font-bold">Agency Content Creator</span>
-        <span class="text-white/20">×</span>
-        <span class="text-brand-cyan font-bold">Web Builder</span>
-        <span class="text-white/20">×</span>
-        <span class="text-brand-accent font-bold">Facebook Ads</span>
-      </div>
+    <!-- 1. HERO SECTION (EDITORIAL ASYMMETRIC BENTO GRID) -->
+    <section id="hero" class="scroll-mt-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+        
+        <!-- Hero Left: Persona Declaration (7 Cols) -->
+        <div class="lg:col-span-7 editorial-card rounded-3xl p-6 sm:p-9 flex flex-col justify-between">
+          <div>
+            <!-- Status Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300 mb-6">
+              <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+              <span>Lê Hoàng Vũ (Cá) • Năm 3 ĐH Văn Hiến</span>
+            </div>
 
-      <!-- Main Headline -->
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.18] max-w-4xl">
-        Lê Hoàng Vũ <br>
-        <span class="bg-gradient-to-r from-brand-neon via-brand-cyan to-brand-accent bg-clip-text text-transparent">
-          Sáng Tạo Content Thực Chiến, Thực Thi Bằng Web & Ads.
-        </span>
-      </h1>
+            <!-- Headline with Balanced Typography -->
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12]" style="text-wrap: balance;">
+              Sáng tạo nội dung Agency. <br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+                Tự tay thực thi Web & Ads.
+              </span>
+            </h1>
 
-      <!-- Detailed Sub-headline in First-Person Voice -->
-      <p class="mt-6 text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
-        Tôi là sinh viên năm 3 Marketing Truyền Thông, Trường Đại Học Văn Hiến, hiện đang làm việc tại một công ty Agency về mảng <strong>Quay Video Content, Giới thiệu sản phẩm và Live stream</strong>. Đồng thời, tôi có kinh nghiệm thực tế tự tay <strong>xây dựng website từ landing page, web bán hàng đến web tĩnh</strong> và trực tiếp vận hành <strong>Facebook Ads</strong>.
-      </p>
-
-      <!-- CTA Buttons -->
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-        <a href="#projects" class="group px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-neon to-brand-cyan text-black font-bold text-sm sm:text-base flex items-center gap-2 hover:opacity-95 transition-all shadow-lg shadow-brand-neon/25 hover:shadow-brand-neon/40 transform hover:-translate-y-0.5">
-          <span>Xem Các Dự Án Của Tôi</span>
-          <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-        </a>
-
-        <button id="btn-download-cv" class="px-6 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700/80 hover:border-brand-neon text-slate-200 hover:text-white font-semibold text-sm sm:text-base flex items-center gap-2 transition-all hover:bg-slate-800/80">
-          <i data-lucide="download" class="w-4 h-4 text-brand-neon"></i>
-          <span>Tải CV PDF (Lê Hoàng Vũ)</span>
-        </button>
-      </div>
-
-      <!-- Quick Metrics Strip -->
-      <div class="mt-14 w-full grid grid-cols-2 md:grid-cols-4 gap-4 p-4 sm:p-6 rounded-2xl glass-card text-left">
-        <div class="p-3 border-l-2 border-brand-neon pl-4">
-          <div class="text-xl sm:text-2xl font-extrabold text-white font-mono flex items-center gap-1.5">
-            <span>ĐH Văn Hiến</span>
+            <!-- First-Person Punchy Copy -->
+            <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
+              Tôi là sinh viên năm 3 Marketing Truyền Thông tại ĐH Văn Hiến, đang làm việc tại Agency mảng Video Content và Livestream. Điểm khác biệt là tôi tự tay xây dựng Landing Page, Web Bán Hàng có Dashboard và trực tiếp tối ưu Facebook Ads để biến lượt xem thành đơn hàng thực tế.
+            </p>
           </div>
-          <div class="text-xs sm:text-sm text-slate-400 mt-1">Năm 3 Marketing Truyền Thông</div>
-        </div>
-        <div class="p-3 border-l-2 border-brand-cyan pl-4">
-          <div class="text-xl sm:text-2xl font-extrabold text-white font-mono flex items-center gap-1.5">
-            <span>Agency Pro</span>
+
+          <!-- CTAs and Direct Contact Bar -->
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-3">
+            <a href="#projects" class="tactile-btn px-5 py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-black font-bold text-xs sm:text-sm flex items-center gap-2 shadow-glow-sm">
+              <span>Xem 3 Dự Án Live</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+
+            <button id="btn-download-cv" class="tactile-btn px-4 py-2.5 rounded-xl bg-surface-elevated hover:bg-white/10 border border-white/10 text-slate-200 text-xs sm:text-sm font-medium flex items-center gap-2">
+              <i data-lucide="file-down" class="w-4 h-4 text-accent"></i>
+              <span>Tải CV PDF</span>
+            </button>
+
+            <a href="https://zalo.me/0328206839" target="_blank" class="tactile-btn ml-auto hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-white">
+              <span>Zalo: 0328206839</span>
+              <i data-lucide="external-link" class="w-3 h-3 text-accent"></i>
+            </a>
           </div>
-          <div class="text-xs sm:text-sm text-slate-400 mt-1">Video Content & Livestream</div>
         </div>
-        <div class="p-3 border-l-2 border-brand-accent pl-4">
-          <div class="text-xl sm:text-2xl font-extrabold text-white font-mono">Web Builder</div>
-          <div class="text-xs sm:text-sm text-slate-400 mt-1">Landing Page, E-com & Web tĩnh</div>
+
+        <!-- Hero Right: Hybrid Spec & Core Profile (5 Cols) -->
+        <div class="lg:col-span-5 editorial-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between bg-gradient-to-b from-[#0c1220] to-[#090e1a]">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Profile & Positioning</span>
+              <span class="text-[11px] font-mono text-accent bg-accent-dim px-2 py-0.5 rounded border border-accent/20">Gen Z 2004</span>
+            </div>
+
+            <div class="mt-5 space-y-4">
+              <!-- Dimension 1: Creative Agency Media -->
+              <div class="p-3.5 rounded-2xl bg-surface-base/80 border border-white/5">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-semibold text-white flex items-center gap-2">
+                    <i data-lucide="video" class="w-3.5 h-3.5 text-rose-400"></i>
+                    Creative Content Agency
+                  </span>
+                  <span class="text-[10px] font-mono text-slate-400">Production</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-normal">
+                  Sản xuất video review, hook 3 giây giữ chân người xem và dẫn livestream tương tác bán hàng trực tiếp.
+                </p>
+              </div>
+
+              <!-- Dimension 2: Web Builder & Tech -->
+              <div class="p-3.5 rounded-2xl bg-surface-base/80 border border-white/5">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-semibold text-white flex items-center gap-2">
+                    <i data-lucide="code-2" class="w-3.5 h-3.5 text-accent"></i>
+                    Web Builder & Dashboard
+                  </span>
+                  <span class="text-[10px] font-mono text-slate-400">Execution</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-normal">
+                  Tự tay code Landing Page chuyển đổi, Web Bán Hàng có Dashboard Admin và Web Tĩnh tốc độ cao.
+                </p>
+              </div>
+
+              <!-- Dimension 3: Facebook Ads Performance -->
+              <div class="p-3.5 rounded-2xl bg-surface-base/80 border border-white/5">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-semibold text-white flex items-center gap-2">
+                    <i data-lucide="trending-up" class="w-3.5 h-3.5 text-accent-cyan"></i>
+                    Facebook Ads & Tracking
+                  </span>
+                  <span class="text-[10px] font-mono text-slate-400">Performance</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-normal">
+                  Nhúng Meta Pixel, theo dõi hành vi đặt hàng và A/B testing sáng tạo để giảm chi phí trên mỗi đơn (CPA).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Micro Identity Strip -->
+          <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
+            <span>Sinh ngày: 27/11/2004</span>
+            <span class="text-slate-300">Biệt danh: Cá</span>
+          </div>
         </div>
-        <div class="p-3 border-l-2 border-amber-400 pl-4">
-          <div class="text-xl sm:text-2xl font-extrabold text-white font-mono">Performance</div>
-          <div class="text-xs sm:text-sm text-slate-400 mt-1">Facebook Ads & Đo lường Pixel</div>
-        </div>
+
       </div>
     </section>
 
-    <!-- ABOUT SECTION (BIO & PERSONAL STORY) -->
+    <!-- 2. ABOUT SECTION (HỒ SƠ NĂNG LỰC) -->
     <section id="about" class="scroll-mt-24">
-      <div class="glass-card p-6 sm:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+      <div class="editorial-card rounded-3xl p-6 sm:p-9 relative overflow-hidden">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           
-          <!-- Avatar & Personal Card -->
-          <div class="md:col-span-5 flex flex-col items-center text-center p-6 bg-slate-900/80 rounded-2xl border border-slate-800">
-            <div class="w-28 h-28 rounded-2xl bg-gradient-to-tr from-brand-neon via-brand-cyan to-brand-accent p-1 shadow-xl shadow-brand-neon/20 mb-4 animate-float">
-              <div class="w-full h-full bg-slate-950 rounded-xl flex flex-col items-center justify-center">
-                <span class="text-3xl font-black text-brand-neon font-mono">LHV</span>
-                <span class="text-[10px] font-mono text-slate-400 mt-1 font-semibold">27/11/2004</span>
+          <div class="md:col-span-5 flex flex-col items-center text-center p-6 bg-surface-base/90 rounded-2xl border border-white/5">
+            <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-accent to-accent-cyan p-0.5 shadow-lg mb-4">
+              <div class="w-full h-full bg-[#080d17] rounded-2xl flex flex-col items-center justify-center">
+                <span class="text-2xl font-black text-white font-mono">LHV</span>
+                <span class="text-[10px] font-mono text-accent mt-0.5 font-bold">27/11/2004</span>
               </div>
             </div>
-            <h3 class="text-xl font-bold text-white">Lê Hoàng Vũ</h3>
-            <p class="text-xs text-brand-cyan font-mono mt-1">Biệt danh thường gọi: Cá</p>
-            <p class="text-xs text-slate-400 mt-1">Sinh viên năm 3 ĐH Văn Hiến (VHU)</p>
+            <h2 class="text-lg font-bold text-white">Lê Hoàng Vũ</h2>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">Marketing Truyền Thông, ĐH Văn Hiến</p>
+            <p class="text-xs text-accent mt-1 font-mono">Biệt danh: Cá</p>
 
-            <div class="mt-4 pt-4 border-t border-slate-800 w-full flex justify-center gap-2 text-xs font-mono text-slate-400">
-              <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-emerald-400">#Marketing</span>
-              <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-cyan-400">#Agency</span>
-              <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-purple-400">#WebBuilder</span>
+            <div class="mt-4 pt-3 border-t border-white/10 w-full flex justify-center gap-1.5 text-[11px] font-mono text-slate-400">
+              <span class="px-2 py-0.5 bg-white/5 rounded">Agency Media</span>
+              <span class="px-2 py-0.5 bg-white/5 rounded">Web Builder</span>
+              <span class="px-2 py-0.5 bg-white/5 rounded">Meta Ads</span>
             </div>
           </div>
 
-          <!-- Story & Positioning in First Person -->
           <div class="md:col-span-7 space-y-4">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-neon/10 text-brand-neon font-mono text-xs">
-              <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
-              Hồ sơ năng lực và Định hướng thực chiến
-            </div>
-            <h3 class="text-2xl sm:text-3xl font-bold text-white leading-snug">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
               Không chỉ dựng kịch bản hay, tôi hiểu cách biến nội dung thành doanh thu thực tế.
             </h3>
             <p class="text-sm text-slate-300 leading-relaxed">
               Điểm yếu phổ biến của nhiều bạn làm nội dung là chỉ tập trung sản xuất video nhưng không nắm kỹ thuật chuyển đổi trên website, trong khi người làm kỹ thuật thuần túy lại ít nhạy bén với insight và tâm lý khách hàng.
             </p>
             <p class="text-sm text-slate-300 leading-relaxed">
-              Là một người theo đuổi phong cách <strong>Hybrid Marketer</strong>, tôi kết hợp trọn vẹn cả hai thế mạnh:
+              Với vai trò là một <strong>Hybrid Marketer</strong>, tôi dung hòa cả hai khía cạnh:
             </p>
-            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-              <li class="flex items-center gap-2">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-neon shrink-0"></i>
+            <div class="space-y-2 text-xs sm:text-sm text-slate-300 pt-1">
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>
                 <span>Trực tiếp lên ý tưởng, quay dựng video review, giới thiệu sản phẩm và vận hành livestream giữ chân khách.</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-cyan shrink-0"></i>
-                <span>Tự tay xây dựng Landing Page, Web Bán Hàng có dashboard và Web Tĩnh để hứng trọn vẹn luồng traffic từ video.</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-accent shrink-0"></i>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>
+                <span>Tự tay xây dựng Landing Page, Web Bán Hàng có Dashboard và Web Tĩnh để hứng trọn vẹn luồng traffic từ video.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>
                 <span>Cài đặt tracking Meta Pixel, tối ưu chiến dịch Facebook Ads giúp giảm tối đa chi phí ra đơn.</span>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- 2. CORE WEAPONS (SKILLS) -->
+    <!-- 3. CORE WEAPONS (BENTO GRID) -->
     <section id="skills" class="scroll-mt-24">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-brand-neon mb-2">My Core Weapon</h2>
-        <h3 class="text-2xl sm:text-3xl font-bold text-white">Vũ Khí Thực Chiến Của Tôi</h3>
-        <p class="text-slate-400 text-sm sm:text-base mt-2">
-          Sự kết hợp kiềng 3 chân: Sáng tạo nội dung truyền thông Agency, Xây dựng Website chuyển đổi và Tối ưu Facebook Ads.
+      <div class="mb-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Vũ Khí Thực Chiến</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          Sự kết hợp kiềng ba chân: Nội dung Agency, Kỹ thuật Web và Quảng cáo Chuyển đổi.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Bento Layout: 1 Wide Card + 2 Complementary Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
 
-        <!-- Cột 1: Media Production & Agency Experience -->
-        <div class="glass-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between relative overflow-hidden group">
-          <div class="absolute -top-12 -right-12 w-28 h-28 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition-all"></div>
+        <!-- Wide Bento Card: Web Building & CRO (7 Cols) -->
+        <div class="md:col-span-7 editorial-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-6">
-              <i data-lucide="video" class="w-6 h-6"></i>
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+              <div class="w-10 h-10 rounded-xl bg-accent-dim border border-accent/20 flex items-center justify-center text-accent">
+                <i data-lucide="code-2" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[11px] font-mono text-accent bg-accent-dim px-2.5 py-0.5 rounded-full border border-accent/20">CRO & Conversion</span>
             </div>
-            <h4 class="text-lg font-bold text-white mb-2 flex items-center justify-between">
-              Creative Video & Livestream
-              <span class="text-xs font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded">Agency</span>
-            </h4>
-            <p class="text-xs text-slate-400 mb-5 leading-relaxed">
-              Tư duy truyền thông từ ĐH Văn Hiến kết hợp kinh nghiệm thực tế tại môi trường Agency tốc độ cao.
+
+            <h3 class="text-xl font-bold text-white mt-5">Web Builder & Tối Ưu Chuyển Đổi (CRO)</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+              Xây dựng trang đích và website bán hàng chuẩn UI/UX, tối ưu tốc độ tải trang dưới 1 giây để giữ chân khách mua.
             </p>
 
-            <ul class="space-y-3 text-sm text-slate-300">
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>
-                <span><strong>Quay và dựng video sản phẩm:</strong> Sản xuất video review, video bán hàng với hook 3 giây đầu giữ chân người xem cực tốt.</span>
+            <ul class="mt-5 space-y-2.5 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-start gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>
+                <span><strong>Landing Page chuyển đổi cao:</strong> Thiết kế bố cục theo hành trình AIDA, CTA nổi bật, form đặt hàng mượt mà.</span>
               </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>
-                <span><strong>Vận hành và Dẫn Livestream:</strong> Lên kịch bản tương tác, deal sốc, tạo cảm xúc và thúc đẩy người xem chốt đơn ngay trên live.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>
-                <span><strong>Kế hoạch nội dung IMC:</strong> Đồng bộ thông điệp xuyên suốt giữa các kênh mạng xã hội, video ngắn và web bán hàng.</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-800 flex flex-wrap gap-1.5">
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Video Shooting</span>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Livestream Host</span>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">CapCut/Premiere</span>
-          </div>
-        </div>
-
-        <!-- Cột 2: Web Building (Landing Page, E-com, Web Tĩnh) -->
-        <div class="glass-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between relative overflow-hidden group">
-          <div class="absolute -top-12 -right-12 w-28 h-28 bg-brand-neon/10 rounded-full blur-2xl group-hover:bg-brand-neon/20 transition-all"></div>
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-brand-neon/10 border border-brand-neon/20 flex items-center justify-center text-brand-neon mb-6">
-              <i data-lucide="code" class="w-6 h-6"></i>
-            </div>
-            <h4 class="text-lg font-bold text-white mb-2 flex items-center justify-between">
-              Web Builder & CRO
-              <span class="text-xs font-mono text-brand-neon bg-brand-neon/10 px-2 py-0.5 rounded">Conversion</span>
-            </h4>
-            <p class="text-xs text-slate-400 mb-5 leading-relaxed">
-              Xây dựng trang đích và website bán hàng chuẩn UI/UX, tối ưu tốc độ tải trang dưới 1 giây.
-            </p>
-
-            <ul class="space-y-3 text-sm text-slate-300">
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-neon mt-0.5 shrink-0"></i>
-                <span><strong>Landing Page chuyển đổi cao:</strong> Thiết kế bố cục theo hành trình tâm lý khách hàng (AIDA), CTA nổi bật, form đặt hàng mượt mà.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-neon mt-0.5 shrink-0"></i>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>
                 <span><strong>Web bán hàng có Dashboard Admin:</strong> Xây dựng trang danh mục sản phẩm, đơn hàng và trang quản trị trực quan.</span>
               </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-neon mt-0.5 shrink-0"></i>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>
                 <span><strong>Web tĩnh siêu tốc:</strong> Tối ưu hiệu năng tải trang tức thì, responsive mượt mà trên mọi kích cỡ điện thoại di động.</span>
               </li>
             </ul>
           </div>
-          <div class="mt-6 pt-4 border-t border-slate-800 flex flex-wrap gap-1.5">
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Landing Page</span>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Web Bán Hàng</span>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Web Tĩnh Siêu Tốc</span>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-1.5 font-mono text-[11px] text-slate-400">
+            <span class="px-2.5 py-1 rounded-lg bg-surface-base border border-white/5 text-slate-300">Landing Page</span>
+            <span class="px-2.5 py-1 rounded-lg bg-surface-base border border-white/5 text-slate-300">Web Bán Hàng E-com</span>
+            <span class="px-2.5 py-1 rounded-lg bg-surface-base border border-white/5 text-slate-300">Dashboard Admin</span>
+            <span class="px-2.5 py-1 rounded-lg bg-surface-base border border-white/5 text-slate-300">Web Tĩnh Siêu Tốc</span>
           </div>
         </div>
 
-        <!-- Cột 3: Facebook Ads & Tracking Kỹ Thuật -->
-        <div class="glass-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between relative overflow-hidden group">
-          <div class="absolute -top-12 -right-12 w-28 h-28 bg-brand-cyan/10 rounded-full blur-2xl group-hover:bg-brand-cyan/20 transition-all"></div>
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 border border-brand-cyan/20 flex items-center justify-center text-brand-cyan mb-6">
-              <i data-lucide="trending-up" class="w-6 h-6"></i>
+        <!-- Right Side: 2 Stacked Bento Cards (5 Cols) -->
+        <div class="md:col-span-5 space-y-5 flex flex-col">
+          
+          <!-- Card: Video Content & Livestream -->
+          <div class="editorial-card rounded-3xl p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
+                  <i data-lucide="video" class="w-4 h-4"></i>
+                </div>
+                <span class="text-[10px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">Agency Media</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-white mt-4">Creative Video & Livestream</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Tư duy truyền thông từ ĐH Văn Hiến kết hợp kinh nghiệm thực tế tại môi trường Agency.
+              </p>
+              <ul class="mt-3 space-y-2 text-xs text-slate-300">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5"></i>
+                  <span>Quay dựng video review, hook 3 giây đầu giữ chân người xem.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5"></i>
+                  <span>Vận hành và dẫn livestream thúc đẩy khách chốt đơn trên phiên live.</span>
+                </li>
+              </ul>
             </div>
-            <h4 class="text-lg font-bold text-white mb-2 flex items-center justify-between">
-              Facebook Ads & Tracking
-              <span class="text-xs font-mono text-brand-cyan bg-brand-cyan/10 px-2 py-0.5 rounded">Performance</span>
-            </h4>
-            <p class="text-xs text-slate-400 mb-5 leading-relaxed">
-              Vận hành chiến dịch quảng cáo và trực tiếp nhúng mã đo lường vào website mà không phụ thuộc coder khác.
-            </p>
+            <div class="mt-4 pt-3 border-t border-white/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-slate-400">
+              <span class="px-2 py-0.5 rounded bg-surface-base border border-white/5">Video Shooting</span>
+              <span class="px-2 py-0.5 rounded bg-surface-base border border-white/5">Livestream Host</span>
+              <span class="px-2 py-0.5 rounded bg-surface-base border border-white/5">CapCut / Premiere</span>
+            </div>
+          </div>
 
-            <ul class="space-y-3 text-sm text-slate-300">
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-cyan mt-0.5 shrink-0"></i>
-                <span><strong>Chiến dịch Facebook Ads thực chiến:</strong> Tận dụng video tự quay để A/B testing mẫu quảng cáo, tối ưu chi phí click (CPC) và giá mỗi đơn.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-cyan mt-0.5 shrink-0"></i>
-                <span><strong>Cài đặt Tracking Pixel:</strong> Trực tiếp nhúng mã Meta Pixel, Google Tag Manager và theo dõi hành vi bấm nút đặt hàng trên web.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-cyan mt-0.5 shrink-0"></i>
-                <span><strong>Vòng lặp tối ưu CPA:</strong> Đọc dữ liệu chuyển đổi và lập tức sửa đổi video hoặc tinh chỉnh giao diện web để hạ giá mỗi đơn hàng.</span>
-              </li>
-            </ul>
+          <!-- Card: Facebook Ads & Tracking -->
+          <div class="editorial-card rounded-3xl p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-accent-cyan">
+                  <i data-lucide="trending-up" class="w-4 h-4"></i>
+                </div>
+                <span class="text-[10px] font-mono text-accent-cyan bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">Performance</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-white mt-4">Facebook Ads & Meta Pixel</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Vận hành chiến dịch và trực tiếp nhúng mã đo lường vào website mà không phụ thuộc dev khác.
+              </p>
+              <ul class="mt-3 space-y-2 text-xs text-slate-300">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-accent-cyan shrink-0 mt-0.5"></i>
+                  <span>A/B testing video quảng cáo để tối ưu chi phí click (CPC).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-accent-cyan shrink-0 mt-0.5"></i>
+                  <span>Cài đặt Meta Pixel & Google Tag Manager đo lường đơn hàng.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-slate-400">
+              <span class="px-2 py-0.5 rounded bg-surface-base border border-white/5">Meta Ads</span>
+              <span class="px-2 py-0.5 rounded bg-surface-base border border-white/5">Pixel Tracking</span>
+              <span class="px-2 py-0.5 rounded bg-surface-base border border-white/5">CPA Optimization</span>
+            </div>
           </div>
-          <div class="mt-6 pt-4 border-t border-slate-800 flex flex-wrap gap-1.5">
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Meta Ads</span>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Pixel Tracking</span>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Data Analytics</span>
-          </div>
+
         </div>
 
       </div>
     </section>
 
-    <!-- 3. INTERACTIVE FEATURE: CRO & ROI SIMULATOR -->
+    <!-- 4. CRO & ROI SIMULATOR (INTERACTIVE COCKPIT) -->
     <section id="calculator" class="scroll-mt-24">
-      <div class="glass-card p-6 sm:p-10 rounded-3xl border border-brand-cyan/20 relative overflow-hidden">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+      <div class="editorial-card rounded-3xl p-6 sm:p-9 relative overflow-hidden border-accent/20">
+        
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-white/10">
           <div>
-            <div class="inline-flex items-center gap-1.5 text-xs font-mono text-brand-cyan uppercase tracking-wider mb-1">
-              <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
-              Interactive CRO Engine
-            </div>
-            <h3 class="text-2xl font-bold text-white">Mô Phỏng Tối Ưu Tỉ Lệ Chuyển Đổi Khi Có Video & Landing Page Chuẩn</h3>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">CRO Simulator: Mô Phỏng Tối Ưu Chuyển Đổi</h2>
             <p class="text-slate-400 text-xs sm:text-sm mt-1">
-              Trải nghiệm thử khi kết hợp Video Content cuốn hút và Landing Page tải nhanh, doanh số bán hàng của bạn sẽ tăng như thế nào.
+              Thử nghiệm kết hợp Video Content thu hút và Landing Page tối ưu sẽ gia tăng doanh thu như thế nào.
             </p>
           </div>
-          <div class="bg-brand-cyan/10 border border-brand-cyan/30 px-3 py-2 rounded-xl text-brand-cyan font-mono text-xs flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
-            <span>Live Growth Engine</span>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-dim border border-accent/20 text-accent font-mono text-xs shrink-0 self-start sm:self-auto">
+            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+            <span>Live Calculation</span>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <!-- Inputs -->
-          <div class="lg:col-span-7 space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-6">
+          
+          <!-- Controls (7 Cols) -->
+          <div class="lg:col-span-7 space-y-5">
             <div>
-              <div class="flex justify-between items-center text-sm font-medium mb-2">
-                <span class="text-slate-300 flex items-center gap-1.5">
-                  <i data-lucide="banknote" class="w-4 h-4 text-brand-neon"></i> Ngân Sách Chạy Facebook Ads / Tháng:
-                </span>
-                <span id="label-budget" class="text-white font-mono font-bold text-base">20,000,000 đ</span>
+              <div class="flex justify-between items-center text-xs sm:text-sm mb-2">
+                <span class="text-slate-300">Ngân sách chạy Ads / Tháng:</span>
+                <span id="label-budget" class="text-white font-mono font-bold text-sm sm:text-base">20,000,000 đ</span>
               </div>
               <input id="slider-budget" type="range" min="3000000" max="60000000" step="1000000" value="20000000"
-                class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-neon">
-              <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                class="w-full h-1.5 bg-surface-elevated rounded-lg appearance-none cursor-pointer accent-emerald-500">
+              <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                 <span>3M</span>
                 <span>30M</span>
                 <span>60M VNĐ</span>
@@ -459,15 +485,13 @@
             </div>
 
             <div>
-              <div class="flex justify-between items-center text-sm font-medium mb-2">
-                <span class="text-slate-300 flex items-center gap-1.5">
-                  <i data-lucide="mouse-pointer-click" class="w-4 h-4 text-brand-cyan"></i> Giá mỗi Click (Nhờ Video Content hay):
-                </span>
-                <span id="label-cpc" class="text-white font-mono font-bold text-base">2,000 đ</span>
+              <div class="flex justify-between items-center text-xs sm:text-sm mb-2">
+                <span class="text-slate-300">Giá mỗi Click (CPC nhờ video hay):</span>
+                <span id="label-cpc" class="text-white font-mono font-bold text-sm sm:text-base">2,000 đ</span>
               </div>
               <input id="slider-cpc" type="range" min="1000" max="8000" step="500" value="2000"
-                class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-cyan">
-              <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                class="w-full h-1.5 bg-surface-elevated rounded-lg appearance-none cursor-pointer accent-cyan-400">
+              <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                 <span>1,000 đ</span>
                 <span>4,000 đ</span>
                 <span>8,000 đ</span>
@@ -475,482 +499,407 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="text-xs text-slate-400 block mb-1">CR Khi Trang Web Chậm hoặc Chưa Tối Ưu:</label>
+              <div class="p-3 rounded-2xl bg-surface-base border border-white/5">
+                <label class="text-[11px] text-slate-400 block mb-1.5">CR web cũ / chưa tối ưu:</label>
                 <div class="flex items-center gap-2">
                   <input id="input-cr-old" type="number" step="0.1" value="1.2" min="0.5" max="10"
-                    class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white font-mono text-sm focus:border-brand-neon focus:outline-none">
-                  <span class="text-slate-400 font-mono text-sm">%</span>
+                    class="w-full px-3 py-1.5 bg-[#090e18] border border-white/10 rounded-xl text-white font-mono text-sm focus:border-accent focus:outline-none">
+                  <span class="text-slate-400 font-mono text-xs">%</span>
                 </div>
               </div>
-              <div>
-                <label class="text-xs text-brand-neon font-medium block mb-1">CR Khi Tôi Tối Ưu Landing Page & Form:</label>
+
+              <div class="p-3 rounded-2xl bg-surface-base border border-accent/20">
+                <label class="text-[11px] text-accent block mb-1.5 font-medium">CR khi tôi tối ưu Landing Page:</label>
                 <div class="flex items-center gap-2">
                   <input id="input-cr-new" type="number" step="0.1" value="3.6" min="0.5" max="15"
-                    class="w-full px-3 py-2 bg-slate-900 border border-brand-neon/60 rounded-lg text-emerald-400 font-mono text-sm focus:border-brand-neon focus:outline-none">
-                  <span class="text-brand-neon font-mono text-sm">%</span>
+                    class="w-full px-3 py-1.5 bg-[#090e18] border border-accent/40 rounded-xl text-accent font-mono text-sm focus:border-accent focus:outline-none">
+                  <span class="text-accent font-mono text-xs">%</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <div class="flex justify-between items-center text-sm font-medium mb-2">
-                <span class="text-slate-300 flex items-center gap-1.5">
-                  <i data-lucide="shopping-bag" class="w-4 h-4 text-brand-accent"></i> Giá trị đơn hàng trung bình (AOV):
-                </span>
-                <span id="label-aov" class="text-white font-mono font-bold text-base">350,000 đ</span>
+              <div class="flex justify-between items-center text-xs sm:text-sm mb-2">
+                <span class="text-slate-300">Giá trị đơn hàng trung bình (AOV):</span>
+                <span id="label-aov" class="text-white font-mono font-bold text-sm sm:text-base">350,000 đ</span>
               </div>
               <input id="slider-aov" type="range" min="100000" max="2000000" step="50000" value="350000"
-                class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-accent">
+                class="w-full h-1.5 bg-surface-elevated rounded-lg appearance-none cursor-pointer accent-purple-400">
             </div>
           </div>
 
-          <!-- Dynamic Output Card -->
-          <div class="lg:col-span-5 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-7 rounded-2xl border border-brand-neon/30 flex flex-col justify-between shadow-2xl relative">
-            <div class="space-y-5">
-              <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-                <span class="text-xs text-slate-400 uppercase font-mono">Tác động chuyển đổi thực tế</span>
-                <span id="badge-cr-boost" class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-brand-neon border border-brand-neon/30">+200% Hiệu suất</span>
+          <!-- Dynamic Output Card (5 Cols) -->
+          <div class="lg:col-span-5 bg-surface-base rounded-2xl border border-accent/30 p-5 sm:p-6 flex flex-col justify-between shadow-glow-card">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <span class="text-[11px] text-slate-400 uppercase font-mono">Tác động chuyển đổi</span>
+                <span id="badge-cr-boost" class="px-2 py-0.5 rounded text-[11px] font-mono bg-accent-dim text-accent border border-accent/20">+200% Hiệu suất</span>
               </div>
 
               <div>
-                <span class="text-xs text-slate-400 block mb-1">Số Đơn Hàng / Khách Lead Tăng Thêm:</span>
+                <span class="text-xs text-slate-400 block mb-1">Số đơn hàng dự kiến tăng thêm:</span>
                 <div class="flex items-baseline gap-2">
                   <span id="res-extra-leads" class="text-3xl sm:text-4xl font-extrabold text-white font-mono">+240</span>
                   <span class="text-xs text-slate-400">đơn / tháng</span>
                 </div>
-                <div class="text-[12px] text-slate-500 mt-1">
-                  Từ <span id="res-old-leads" class="text-slate-400">120</span> lên <span id="res-new-leads" class="text-emerald-400 font-semibold">360</span> đơn với cùng 1 mức ngân sách.
+                <div class="text-[11px] text-slate-400 mt-1">
+                  Từ <span id="res-old-leads" class="text-slate-300 font-mono">120</span> lên <span id="res-new-leads" class="text-accent font-mono font-semibold">360</span> đơn với cùng mức chi phí.
                 </div>
               </div>
 
-              <div class="p-3.5 rounded-xl bg-slate-800/40 border border-slate-700/50">
-                <span class="text-xs text-slate-400 block mb-0.5">Chi phí để có 1 đơn hàng (CPA) giảm từ:</span>
-                <div class="flex items-center gap-2 text-sm font-mono">
+              <div class="p-3 rounded-xl bg-surface-card border border-white/5">
+                <span class="text-[11px] text-slate-400 block mb-0.5">Chi phí có 1 đơn hàng (CPA) giảm từ:</span>
+                <div class="flex items-center gap-2 text-xs font-mono">
                   <span id="res-old-cpa" class="text-rose-400 line-through">166,666 đ</span>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-400"></i>
-                  <span id="res-new-cpa" class="text-emerald-400 font-bold">55,555 đ</span>
-                  <span id="res-cpa-pct" class="text-[11px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">-67%</span>
+                  <span id="res-new-cpa" class="text-accent font-bold">55,555 đ</span>
+                  <span id="res-cpa-pct" class="text-[10px] bg-accent-dim text-accent px-1.5 py-0.2 rounded border border-accent/20">-67%</span>
                 </div>
               </div>
 
-              <div class="pt-2">
-                <span class="text-xs text-slate-400 block mb-1">Doanh Thu Tăng Thêm Mỗi Tháng:</span>
-                <div id="res-extra-revenue" class="text-2xl sm:text-3xl font-extrabold text-brand-neon font-mono">
+              <div class="pt-1">
+                <span class="text-xs text-slate-400 block mb-1">Doanh thu dự kiến tăng thêm:</span>
+                <div id="res-extra-revenue" class="text-2xl sm:text-3xl font-extrabold text-accent font-mono">
                   +84,000,000 đ
                 </div>
-                <p class="text-[11px] text-slate-400 mt-1.5 leading-normal">
-                  Sức mạnh khi có sự kết hợp đồng bộ giữa video thu hút và landing page giữ chân khách hàng.
-                </p>
               </div>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-slate-800">
+            <div class="mt-5 pt-3 border-t border-white/10">
               <button onclick="logCustomPixelEvent('Simulator_Interact', { budget: document.getElementById('slider-budget').value })"
-                class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-xs font-mono flex items-center justify-center gap-2 border border-white/10 transition-colors">
-                <i data-lucide="activity" class="w-3.5 h-3.5 text-brand-cyan"></i>
-                Bắn dữ liệu sang Live Logger
+                class="tactile-btn w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-xs font-mono flex items-center justify-center gap-2 border border-white/10">
+                <i data-lucide="activity" class="w-3.5 h-3.5 text-accent-cyan"></i>
+                <span>Gửi dữ liệu sang Tracking Console</span>
               </button>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- 4. FEATURED REAL PROJECTS -->
+    <!-- 5. FEATURED PROJECTS (EDITORIAL BENTO GRID) -->
     <section id="projects" class="scroll-mt-24">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-brand-cyan mb-2">Featured Projects</h2>
-        <h3 class="text-2xl sm:text-3xl font-bold text-white">Các Dự Án Web Tôi Đã Triển Khai</h3>
-        <p class="text-slate-400 text-sm sm:text-base mt-2">
-          Những website thực tế đang hoạt động online do tôi trực tiếp xây dựng và tối ưu, từ web bán hàng có dashboard admin đến trang web tĩnh tốc độ cao.
+      <div class="mb-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Các Dự Án Web Tôi Đã Triển Khai</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          Các website thực tế đang hoạt động online do tôi trực tiếp xây dựng và tối ưu.
         </p>
       </div>
 
-      <div class="space-y-10">
+      <!-- Projects Grid -->
+      <div class="space-y-6">
 
-        <!-- Dự án 1: Kho Sỉ Bao Bì (Web Bán Hàng & Dashboard Admin) -->
-        <div class="glass-card rounded-3xl overflow-hidden border border-white/10 grid grid-cols-1 lg:grid-cols-12 transition-all">
-          <div class="lg:col-span-7 bg-slate-950 p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800">
-            <div class="flex items-center justify-between pb-4 border-b border-slate-800 text-xs font-mono text-slate-400">
+        <!-- Dự án 1: Kho Sỉ Bao Bì (Hero Showcase Project) -->
+        <div class="editorial-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 transition-all">
+          <div class="lg:col-span-7 bg-[#090e18] p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10">
+            <!-- Simulated Browser Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 text-xs font-mono text-slate-400">
               <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                <a href="https://khosibaobi.onrender.com/" target="_blank" class="ml-2 text-brand-cyan hover:underline font-semibold flex items-center gap-1">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/70 inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/70 inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70 inline-block"></span>
+                <a href="https://khosibaobi.onrender.com/" target="_blank" class="ml-2 text-accent-cyan hover:underline font-semibold flex items-center gap-1">
                   khosibaobi.onrender.com
                   <i data-lucide="external-link" class="w-3 h-3"></i>
                 </a>
               </div>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-brand-neon border border-brand-neon/20 text-[11px]">Live Production</span>
+              <span class="px-2 py-0.5 rounded bg-accent-dim text-accent border border-accent/20 text-[10px]">Live Production</span>
             </div>
 
-            <div class="my-6 space-y-4">
-              <div class="grid grid-cols-3 gap-3">
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+            <!-- Architecture Breakdown -->
+            <div class="my-5 space-y-3">
+              <div class="grid grid-cols-3 gap-2.5">
+                <div class="p-2.5 rounded-xl bg-surface-card border border-white/5">
                   <div class="text-[10px] text-slate-400 uppercase font-mono">Loại hệ thống</div>
-                  <div class="text-sm font-bold text-emerald-400 font-mono mt-1">Web Bán Hàng</div>
+                  <div class="text-xs sm:text-sm font-bold text-accent font-mono mt-0.5">Web Bán Hàng</div>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                <div class="p-2.5 rounded-xl bg-surface-card border border-white/5">
                   <div class="text-[10px] text-slate-400 uppercase font-mono">Quản trị</div>
-                  <div class="text-sm font-bold text-white font-mono mt-1">Dashboard Admin</div>
+                  <div class="text-xs sm:text-sm font-bold text-white font-mono mt-0.5">Dashboard Admin</div>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                <div class="p-2.5 rounded-xl bg-surface-card border border-white/5">
                   <div class="text-[10px] text-slate-400 uppercase font-mono">Chức năng</div>
-                  <div class="text-sm font-bold text-cyan-400 font-mono mt-1">Quản lý kho & đơn</div>
+                  <div class="text-xs sm:text-sm font-bold text-accent-cyan font-mono mt-0.5">Quản lý kho đơn</div>
                 </div>
               </div>
 
-              <div class="bg-black/80 rounded-xl p-4 font-mono text-xs text-slate-300 border border-slate-800">
-                <div class="text-slate-500 mb-1">// Mô hình xử lý dữ liệu đơn hàng và quản trị</div>
-                <div class="text-purple-400">Admin Dashboard: Quản lý danh mục sỉ bao bì, trạng thái đơn hàng</div>
-                <div class="text-cyan-300 mt-1">Client Interface: Tra cứu sản phẩm, chọn mẫu mã và gửi đơn đặt hàng</div>
-                <div class="text-emerald-400 mt-1">Hosting: Render Cloud Platform</div>
+              <div class="bg-surface-base rounded-xl p-3.5 font-mono text-xs text-slate-300 border border-white/5 space-y-1">
+                <div class="text-slate-500 text-[11px]">// Kiến trúc xử lý dữ liệu và quản trị</div>
+                <div class="text-purple-300">Admin Dashboard: Quản lý danh mục sỉ bao bì, cập nhật trạng thái đơn</div>
+                <div class="text-accent-cyan">Client Interface: Tra cứu sản phẩm, chọn mẫu mã và gửi đơn đặt sỉ</div>
+                <div class="text-accent">Hosting Platform: Render Cloud Platform</div>
               </div>
             </div>
 
-            <div class="flex flex-wrap gap-2 pt-2">
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-brand-neon border border-brand-neon/20">Web Bán Hàng E-com</span>
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-cyan-300 border border-cyan-400/20">Dashboard Admin</span>
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700">Render Deployment</span>
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Web Bán Hàng E-com</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-accent">Dashboard Admin</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400">Render Deployment</span>
             </div>
           </div>
 
           <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
             <div>
-              <div class="text-xs font-mono text-brand-neon uppercase tracking-wider mb-2">Dự Án Thương Mại 01</div>
-              <h4 class="text-2xl font-bold text-white mb-3">Kho Sỉ Bao Bì (Web Bán Hàng & Dashboard Admin)</h4>
-              <p class="text-sm text-slate-300 leading-relaxed mb-6">
+              <span class="text-[11px] font-mono text-accent uppercase tracking-wider block mb-1">Dự án 01 • Thương mại</span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Kho Sỉ Bao Bì (Web Bán Hàng & Dashboard)</h3>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 Hệ thống website thương mại điện tử chuyên cung cấp sỉ và lẻ các loại bao bì do tôi tự tay xây dựng. Website được tích hợp trang quản trị Admin Dashboard giúp chủ doanh nghiệp dễ dàng kiểm soát danh mục sản phẩm, theo dõi đơn đặt hàng và quản lý tồn kho.
               </p>
 
-              <div class="space-y-3 mb-6 text-xs text-slate-300">
+              <div class="space-y-2 mb-6 text-xs text-slate-300">
                 <div class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-brand-neon shrink-0"></i>
-                  <span>Giao diện mua hàng tối ưu, dễ dàng chọn số lượng và liên hệ đặt sỉ.</span>
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-accent shrink-0"></i>
+                  <span>Giao diện mua hàng tối ưu, thuận tiện chọn số lượng và đặt hàng sỉ.</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-brand-neon shrink-0"></i>
-                  <span>Hệ thống Dashboard Admin theo dõi đơn đặt hàng thực tế trực quan.</span>
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-accent shrink-0"></i>
+                  <span>Hệ thống Dashboard Admin theo dõi đơn đặt hàng trực quan.</span>
                 </div>
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-800">
-              <a href="https://khosibaobi.onrender.com/" target="_blank" class="px-4 py-2.5 rounded-xl bg-brand-neon text-black font-semibold text-xs sm:text-sm flex items-center gap-2 hover:bg-emerald-400 transition-colors">
+            <div class="flex flex-wrap items-center gap-2.5 pt-4 border-t border-white/10">
+              <a href="https://khosibaobi.onrender.com/" target="_blank" class="tactile-btn px-4 py-2 rounded-xl bg-accent hover:bg-accent-hover text-black font-semibold text-xs sm:text-sm flex items-center gap-1.5 shadow-glow-sm">
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                 <span>Xem Website Thực Tế</span>
               </a>
-              <button onclick="triggerDemoModal('Kho Sỉ Bao Bì')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm flex items-center gap-2 transition-colors">
+              <button onclick="triggerDemoModal('Kho Sỉ Bao Bì')" class="tactile-btn px-3.5 py-2 rounded-xl bg-surface-elevated hover:bg-white/10 text-slate-200 text-xs sm:text-sm border border-white/10 flex items-center gap-1.5">
                 <i data-lucide="info" class="w-3.5 h-3.5 text-slate-400"></i>
-                <span>Chi Tiết Tính Năng</span>
+                <span>Chi Tiết</span>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Dự án 2: Shark Store (Web Bán Tài Khoản Kỹ Thuật Số) -->
-        <div class="glass-card rounded-3xl overflow-hidden border border-white/10 grid grid-cols-1 lg:grid-cols-12 transition-all">
-          <div class="lg:col-span-7 bg-slate-950 p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800">
-            <div class="flex items-center justify-between pb-4 border-b border-slate-800 text-xs font-mono text-slate-400">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                <a href="https://sharkstore.id.vn/" target="_blank" class="ml-2 text-brand-cyan hover:underline font-semibold flex items-center gap-1">
+        <!-- 2-Col Split for Projects 2 & 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Dự án 2: Shark Store -->
+          <div class="editorial-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono text-slate-400">
+                <a href="https://sharkstore.id.vn/" target="_blank" class="text-accent-cyan hover:underline font-semibold flex items-center gap-1">
                   sharkstore.id.vn
                   <i data-lucide="external-link" class="w-3 h-3"></i>
                 </a>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[11px]">Tên miền riêng</span>
-            </div>
-
-            <div class="my-6 space-y-4">
-              <div class="grid grid-cols-3 gap-3">
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-                  <div class="text-[10px] text-slate-400 uppercase font-mono">Ngành hàng</div>
-                  <div class="text-sm font-bold text-cyan-400 font-mono mt-1">Tài khoản số</div>
-                </div>
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-                  <div class="text-[10px] text-slate-400 uppercase font-mono">Trải nghiệm</div>
-                  <div class="text-sm font-bold text-white font-mono mt-1">Mua hàng nhanh</div>
-                </div>
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-                  <div class="text-[10px] text-slate-400 uppercase font-mono">Tên miền</div>
-                  <div class="text-sm font-bold text-emerald-400 font-mono mt-1">sharkstore.id.vn</div>
-                </div>
+                <span class="px-2 py-0.5 rounded bg-cyan-500/10 text-accent-cyan border border-cyan-500/20 text-[10px]">Tên miền riêng</span>
               </div>
 
-              <div class="bg-black/80 rounded-xl p-4 font-mono text-xs text-slate-300 border border-slate-800">
-                <div class="text-slate-500 mb-1">// Danh mục sản phẩm kỹ thuật số đa dạng</div>
-                <div class="text-cyan-300">Sản phẩm: Tài khoản bản quyền, công cụ làm việc và giải trí</div>
-                <div class="text-emerald-300 mt-1">Tối ưu UI/UX: Hiển thị bảng giá rõ ràng, đặt hàng trực tiếp</div>
-                <div class="text-purple-300 mt-1">Định dạng: Giao diện hiện đại, thân thiện người dùng trẻ</div>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap gap-2 pt-2">
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-cyan-300 border border-cyan-400/20">Digital Store</span>
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-brand-neon border border-brand-neon/20">Custom Domain</span>
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700">UI/UX Hiện Đại</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
-            <div>
-              <div class="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">Dự Án Thương Mại 02</div>
-              <h4 class="text-2xl font-bold text-white mb-3">Shark Store (Web Bán Tài Khoản Kỹ Thuật Số)</h4>
-              <p class="text-sm text-slate-300 leading-relaxed mb-6">
-                Website bán hàng trực tuyến các loại tài khoản và phần mềm kỹ thuật số đang hoạt động trên tên miền riêng sharkstore.id.vn. Tôi tập trung xây dựng giao diện bắt mắt, phân loại sản phẩm khoa học và tối ưu thao tác chọn mua để khách hàng thanh toán nhanh chóng.
+              <span class="text-[10px] font-mono text-accent-cyan uppercase tracking-wider block mt-4 mb-1">Dự án 02 • Digital Store</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Shark Store: Web Bán Tài Khoản Kỹ Thuật Số</h3>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                Website bán hàng trực tuyến các loại tài khoản và phần mềm kỹ thuật số đang hoạt động trên tên miền riêng sharkstore.id.vn. Tôi tập trung xây dựng giao diện bắt mắt, phân loại sản phẩm khoa học và tối ưu thao tác chọn mua nhanh chóng.
               </p>
 
-              <div class="space-y-3 mb-6 text-xs text-slate-300">
+              <div class="p-3 rounded-xl bg-surface-base border border-white/5 space-y-1.5 text-xs text-slate-300 mb-4">
                 <div class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-brand-cyan shrink-0"></i>
-                  <span>Thiết kế hiện đại, bố cục danh mục phù hợp thói quen mua hàng online.</span>
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-accent-cyan shrink-0"></i>
+                  <span>Giao diện phân loại danh mục sản phẩm số thông minh.</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-brand-cyan shrink-0"></i>
-                  <span>Tối ưu hóa hiển thị trên di động để khách hàng dễ dàng tìm kiếm gói dịch vụ.</span>
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-accent-cyan shrink-0"></i>
+                  <span>Tối ưu hiển thị di động giúp khách hàng tra cứu và thanh toán dễ dàng.</span>
                 </div>
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-800">
-              <a href="https://sharkstore.id.vn/" target="_blank" class="px-4 py-2.5 rounded-xl bg-brand-cyan text-black font-semibold text-xs sm:text-sm flex items-center gap-2 hover:bg-cyan-400 transition-colors">
+            <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-white/10">
+              <a href="https://sharkstore.id.vn/" target="_blank" class="tactile-btn px-3.5 py-2 rounded-xl bg-accent-cyan hover:bg-cyan-400 text-black font-semibold text-xs flex items-center gap-1.5">
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                <span>Truy Cập Shark Store</span>
+                <span>Mở Shark Store</span>
               </a>
-              <button onclick="triggerDemoModal('Shark Store')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm flex items-center gap-2 transition-colors">
+              <button onclick="triggerDemoModal('Shark Store')" class="tactile-btn px-3 py-2 rounded-xl bg-surface-elevated hover:bg-white/10 text-slate-200 text-xs border border-white/10 flex items-center gap-1.5">
                 <i data-lucide="info" class="w-3.5 h-3.5 text-slate-400"></i>
                 <span>Xem Chi Tiết</span>
               </button>
             </div>
           </div>
-        </div>
 
-        <!-- Dự án 3: Landing Page Tĩnh (GFTN Landing Page) -->
-        <div class="glass-card rounded-3xl overflow-hidden border border-white/10 grid grid-cols-1 lg:grid-cols-12 transition-all">
-          <div class="lg:col-span-7 bg-slate-950 p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800">
-            <div class="flex items-center justify-between pb-4 border-b border-slate-800 text-xs font-mono text-slate-400">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                <a href="https://landing-page-gftn.onrender.com/" target="_blank" class="ml-2 text-brand-accent hover:underline font-semibold flex items-center gap-1">
-                  landing-page-gftn.onrender.com
-                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 text-[11px]">Static Web</span>
-            </div>
-
-            <div class="my-6 space-y-4">
-              <div class="grid grid-cols-3 gap-3">
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-                  <div class="text-[10px] text-slate-400 uppercase font-mono">Dạng trang</div>
-                  <div class="text-sm font-bold text-purple-400 font-mono mt-1">Web Tĩnh Siêu Tốc</div>
-                </div>
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-                  <div class="text-[10px] text-slate-400 uppercase font-mono">Tốc độ tải</div>
-                  <div class="text-sm font-bold text-emerald-400 font-mono mt-1">Dưới 0.8 giây</div>
-                </div>
-                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
-                  <div class="text-[10px] text-slate-400 uppercase font-mono">Tương thích</div>
-                  <div class="text-sm font-bold text-white font-mono mt-1">100% Mobile</div>
-                </div>
-              </div>
-
-              <div class="bg-black/80 rounded-xl p-4 font-mono text-xs text-slate-300 border border-slate-800">
-                <div class="text-slate-500 mb-1">// Kiến trúc trang đích web tĩnh thuần túy</div>
-                <div class="text-emerald-400">Zero Dependencies: Không tải các bộ thư viện cồng kềnh</div>
-                <div class="text-cyan-300 mt-1">Clean Markup: Mã nguồn HTML5 và CSS tối ưu dung lượng</div>
-                <div class="text-purple-300 mt-1">Mục đích: Giới thiệu thông tin rõ ràng và dẫn dắt hành động</div>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap gap-2 pt-2">
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-purple-300 border border-purple-400/20">Trang Web Tĩnh</span>
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-brand-neon border border-brand-neon/20">Tối Ưu Tốc Độ</span>
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700">Responsive Design</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+          <!-- Dự án 3: GFTN Landing Page -->
+          <div class="editorial-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
             <div>
-              <div class="text-xs font-mono text-brand-accent uppercase tracking-wider mb-2">Dự Án Web Tĩnh 03</div>
-              <h4 class="text-2xl font-bold text-white mb-3">Landing Page Tĩnh (GFTN Showcase)</h4>
-              <p class="text-sm text-slate-300 leading-relaxed mb-6">
-                Một sản phẩm trang đích dạng web tĩnh được xây dựng với tiêu chí đơn giản, gọn nhẹ và tốc độ phản hồi nhanh. Dự án chứng minh khả năng tự tay tổ chức layout, cắt ghép giao diện và triển khai trang web tĩnh lên môi trường trực tuyến không phụ thuộc vào các công cụ tạo web dựng sẵn.
+              <div class="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono text-slate-400">
+                <a href="https://landing-page-gftn.onrender.com/" target="_blank" class="text-purple-300 hover:underline font-semibold flex items-center gap-1">
+                  landing-page-gftn.onrender.com
+                  <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 text-[10px]">Static Web</span>
+              </div>
+
+              <span class="text-[10px] font-mono text-purple-400 uppercase tracking-wider block mt-4 mb-1">Dự án 03 • Web Tĩnh</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Landing Page Tĩnh (GFTN Showcase)</h3>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                Trang đích dạng web tĩnh được xây dựng với tiêu chí gọn nhẹ và tốc độ phản hồi cực nhanh. Dự án chứng minh khả năng tự tay tổ chức layout, cắt ghép giao diện và triển khai trang web tĩnh lên môi trường trực tuyến.
               </p>
 
-              <div class="space-y-3 mb-6 text-xs text-slate-300">
+              <div class="p-3 rounded-xl bg-surface-base border border-white/5 space-y-1.5 text-xs text-slate-300 mb-4">
                 <div class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-brand-accent shrink-0"></i>
-                  <span>Tốc độ mở trang cực nhanh, tối ưu trải nghiệm đọc lướt trên điện thoại.</span>
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-purple-400 shrink-0"></i>
+                  <span>Tốc độ tải trang dưới 0.8s, trải nghiệm vuốt chạm mượt mà.</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-brand-accent shrink-0"></i>
-                  <span>Cấu trúc mã nguồn tinh gọn, sẵn sàng cho việc tích hợp thêm các tính năng chuyển đổi.</span>
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-purple-400 shrink-0"></i>
+                  <span>Mã nguồn thuần túy không phụ thuộc framework cồng kềnh.</span>
                 </div>
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-800">
-              <a href="https://landing-page-gftn.onrender.com/" target="_blank" class="px-4 py-2.5 rounded-xl bg-purple-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 hover:bg-purple-600 transition-colors">
+            <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-white/10">
+              <a href="https://landing-page-gftn.onrender.com/" target="_blank" class="tactile-btn px-3.5 py-2 rounded-xl bg-purple-500 hover:bg-purple-600 text-white font-semibold text-xs flex items-center gap-1.5">
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                <span>Xem Trang Web Tĩnh</span>
+                <span>Xem Trang Tĩnh</span>
               </a>
-              <button onclick="triggerDemoModal('Landing Page GFTN')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm flex items-center gap-2 transition-colors">
+              <button onclick="triggerDemoModal('Landing Page GFTN')" class="tactile-btn px-3 py-2 rounded-xl bg-surface-elevated hover:bg-white/10 text-slate-200 text-xs border border-white/10 flex items-center gap-1.5">
                 <i data-lucide="info" class="w-3.5 h-3.5 text-slate-400"></i>
-                <span>Xem Thông Tin</span>
+                <span>Xem Chi Tiết</span>
               </button>
             </div>
           </div>
+
         </div>
 
       </div>
     </section>
 
-    <!-- 5. WORKFLOW: VIDEO CONTENT + LANDING PAGE + FB ADS -->
+    <!-- 6. WORKFLOW SECTION (QUY TRÌNH KHÉP KÍN) -->
     <section id="workflow" class="scroll-mt-24">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-brand-neon mb-2">Quy Trình Khép Kín Thực Chiến</h2>
-        <h3 class="text-2xl sm:text-3xl font-bold text-white">Từ Video Content Agency Đến Đơn Hàng Trên Website</h3>
-        <p class="text-slate-400 text-sm sm:text-base mt-2">
-          Cách tôi vận hành trọn vẹn một chiến dịch: Tự tạo nội dung thu hút, tự dựng website đón khách và tự chạy Ads tối ưu chi phí.
+      <div class="mb-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Quy Trình Khép Kín Thực Chiến</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          Cách tôi tự tay vận hành chiến dịch: Từ sáng tạo video thu hút đến dựng web đón khách và chạy Ads tối ưu chi phí.
         </p>
       </div>
 
-      <div class="glass-card p-6 sm:p-8 rounded-3xl border border-white/10">
-        <!-- 4 Step Tabs -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-          <button onclick="selectWorkflowStep(1)" id="step-btn-1" class="workflow-btn active p-3 rounded-xl border text-left transition-all border-brand-neon bg-brand-neon/10">
-            <div class="text-[10px] font-mono uppercase text-brand-neon mb-1 font-bold">Bước 01</div>
-            <div class="text-xs sm:text-sm font-semibold text-white">Quay Video & Kịch Bản</div>
+      <div class="editorial-card rounded-3xl p-6 sm:p-8">
+        <!-- 4 Step Navigation -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 mb-6">
+          <button onclick="selectWorkflowStep(1)" id="step-btn-1" class="workflow-btn active p-3 rounded-2xl border text-left tactile-btn border-accent bg-accent-dim">
+            <div class="text-[10px] font-mono uppercase text-accent mb-0.5 font-bold">Bước 01</div>
+            <div class="text-xs font-semibold text-white">Quay Video & Kịch Bản</div>
           </button>
 
-          <button onclick="selectWorkflowStep(2)" id="step-btn-2" class="workflow-btn p-3 rounded-xl border text-left transition-all border-slate-800">
-            <div class="text-[10px] font-mono uppercase text-slate-400 mb-1 font-bold">Bước 02</div>
-            <div class="text-xs sm:text-sm font-semibold text-slate-300">Tự Code Website & Form</div>
+          <button onclick="selectWorkflowStep(2)" id="step-btn-2" class="workflow-btn p-3 rounded-2xl border text-left tactile-btn border-white/10 bg-surface-base">
+            <div class="text-[10px] font-mono uppercase text-slate-400 mb-0.5 font-bold">Bước 02</div>
+            <div class="text-xs font-semibold text-slate-300">Tự Code Web & Form</div>
           </button>
 
-          <button onclick="selectWorkflowStep(3)" id="step-btn-3" class="workflow-btn p-3 rounded-xl border text-left transition-all border-slate-800">
-            <div class="text-[10px] font-mono uppercase text-slate-400 mb-1 font-bold">Bước 03</div>
-            <div class="text-xs sm:text-sm font-semibold text-slate-300">Gắn Pixel & Chạy Ads</div>
+          <button onclick="selectWorkflowStep(3)" id="step-btn-3" class="workflow-btn p-3 rounded-2xl border text-left tactile-btn border-white/10 bg-surface-base">
+            <div class="text-[10px] font-mono uppercase text-slate-400 mb-0.5 font-bold">Bước 03</div>
+            <div class="text-xs font-semibold text-slate-300">Gắn Pixel & Chạy Ads</div>
           </button>
 
-          <button onclick="selectWorkflowStep(4)" id="step-btn-4" class="workflow-btn p-3 rounded-xl border text-left transition-all border-slate-800">
-            <div class="text-[10px] font-mono uppercase text-slate-400 mb-1 font-bold">Bước 04</div>
-            <div class="text-xs sm:text-sm font-semibold text-slate-300">Đọc Số Liệu & Tối Ưu CPA</div>
+          <button onclick="selectWorkflowStep(4)" id="step-btn-4" class="workflow-btn p-3 rounded-2xl border text-left tactile-btn border-white/10 bg-surface-base">
+            <div class="text-[10px] font-mono uppercase text-slate-400 mb-0.5 font-bold">Bước 04</div>
+            <div class="text-xs font-semibold text-slate-300">Đọc Số Liệu & Tối Ưu CPA</div>
           </button>
         </div>
 
         <!-- Dynamic Container -->
-        <div id="step-content-display" class="bg-slate-950 p-6 sm:p-7 rounded-2xl border border-slate-800 transition-all">
+        <div id="step-content-display" class="bg-surface-base p-5 sm:p-7 rounded-2xl border border-white/5 transition-all">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div class="md:col-span-7 space-y-4">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-rose-500/10 text-rose-400 font-mono text-xs">
-                <i data-lucide="video" class="w-3.5 h-3.5"></i>
+            <div class="md:col-span-7 space-y-3">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-rose-500/10 text-rose-400 font-mono text-xs border border-rose-500/20">
+                <i data-lucide="video" class="w-3 h-3"></i>
                 Agency Creative Phase
               </div>
-              <h4 class="text-xl font-bold text-white">Bước 1: Lên Kịch Bản & Quay Dựng Video Content Đánh Trúng Insight</h4>
-              <p class="text-sm text-slate-300 leading-relaxed">
+              <h3 class="text-lg sm:text-xl font-bold text-white">Bước 1: Lên Kịch Bản & Quay Dựng Video Content Đánh Trúng Insight</h3>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Nghiên cứu tính năng độc đáo của sản phẩm, dựng video ngắn 30-60 giây hoặc kịch bản livestream. Bắt đầu bằng 3 giây giật hook để giữ chân người xem, trình bày giải pháp và kích thích nhu cầu bấm xem thêm.
               </p>
-              <div class="flex items-center gap-4 text-xs font-mono text-slate-400">
-                <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-brand-neon"></i> Hook 3 Giây</span>
-                <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-brand-neon"></i> Livestream Call-out</span>
+              <div class="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1">
+                <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-accent"></i> Hook 3 Giây</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-accent"></i> Livestream Call-out</span>
               </div>
             </div>
-            <div class="md:col-span-5 bg-slate-900/80 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300">
+            <div class="md:col-span-5 bg-[#090e18] p-4 rounded-xl border border-white/5 font-mono text-xs text-slate-300">
               <div class="text-slate-500 mb-2">// Creative Concept Matrix</div>
               <div class="text-rose-400">Video Angle 1: Đập hộp và trải nghiệm thực tế</div>
               <div class="text-amber-400 mt-1">Video Angle 2: So sánh trước và sau khi sử dụng</div>
               <div class="text-emerald-400 mt-1">Livestream: Flash sale độc quyền phiên live</div>
-              <div class="mt-3 text-[11px] text-slate-500 border-t border-slate-800 pt-2">Mục tiêu: Đạt CTR &gt; 3.0%, giảm giá mỗi lượt xem</div>
+              <div class="mt-3 text-[11px] text-slate-500 border-t border-white/10 pt-2">Mục tiêu: Đạt CTR &gt; 3.0%, giảm giá mỗi lượt xem</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. CONTACT & CONNECT -->
+    <!-- 7. CONTACT SECTION (BẢO TỒN 100% THÔNG TIN LIÊN HỆ) -->
     <section id="contact" class="scroll-mt-24">
-      <div class="glass-card p-6 sm:p-10 lg:p-12 rounded-3xl border border-brand-neon/20 relative overflow-hidden max-w-2xl mx-auto shadow-2xl">
+      <div class="editorial-card rounded-3xl p-6 sm:p-10 relative overflow-hidden max-w-2xl mx-auto border-accent/20">
         <div class="space-y-6">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-brand-neon font-mono text-xs border border-brand-neon/30">
-            <span class="w-2 h-2 rounded-full bg-brand-neon animate-pulse"></span>
-            Sẵn sàng nhận dự án & Cơ hội hợp tác
+          
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
+              Cần Một Người Vừa Sáng Tạo Content, Vừa Tự Tay Code Web?
+            </h2>
+            <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+              Bạn đang tìm kiếm người phụ trách sản xuất video content, host livestream hoặc xây dựng website bán hàng, landing page và chạy Facebook Ads ra đơn? Hãy liên hệ trực tiếp với tôi qua các kênh bên dưới.
+            </p>
           </div>
-          
-          <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
-            Cần Một Người Vừa Sáng Tạo Content, Vừa Tự Tay Code Web?
-          </h3>
-          
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Bạn đang tìm kiếm người phụ trách sản xuất video content, host livestream hoặc xây dựng website bán hàng, landing page và chạy Facebook Ads ra đơn? Hãy liên hệ trực tiếp với tôi qua các kênh bên dưới.
-          </p>
 
-          <!-- Card Thông Tin Trực Tiếp (Chuẩn theo ảnh, có thêm SĐT 0328206839) -->
-          <div class="p-6 sm:p-7 rounded-2xl bg-slate-900/95 border border-slate-800 space-y-4 shadow-xl">
+          <!-- Contact Information Card -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-surface-base border border-white/10 space-y-4">
+            
             <!-- Người phụ trách -->
             <div class="flex items-center gap-3.5">
-              <div class="w-11 h-11 rounded-xl bg-brand-neon/10 border border-brand-neon/30 flex items-center justify-center text-brand-neon shrink-0">
-                <i data-lucide="user" class="w-5 h-5"></i>
+              <div class="w-10 h-10 rounded-xl bg-accent-dim border border-accent/20 flex items-center justify-center text-accent shrink-0">
+                <i data-lucide="user" class="w-4 h-4"></i>
               </div>
               <div>
-                <div class="text-[11px] text-slate-400 font-mono">Người phụ trách:</div>
-                <div class="text-sm sm:text-base font-bold text-white">Lê Hoàng Vũ (Cá) • Sinh 27/11/2004</div>
+                <div class="text-[10px] text-slate-400 font-mono">Người phụ trách:</div>
+                <div class="text-xs sm:text-sm font-bold text-white">Lê Hoàng Vũ (Cá) • Sinh 27/11/2004</div>
               </div>
             </div>
 
             <!-- Chuyên ngành -->
             <div class="flex items-center gap-3.5">
-              <div class="w-11 h-11 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan shrink-0">
-                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-accent-cyan shrink-0">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i>
               </div>
               <div>
-                <div class="text-[11px] text-slate-400 font-mono">Chuyên ngành:</div>
-                <div class="text-sm sm:text-base font-medium text-slate-200">Marketing Truyền Thông, ĐH Văn Hiến</div>
+                <div class="text-[10px] text-slate-400 font-mono">Chuyên ngành:</div>
+                <div class="text-xs sm:text-sm font-medium text-slate-200">Marketing Truyền Thông, ĐH Văn Hiến</div>
               </div>
             </div>
 
             <!-- Số điện thoại / Zalo -->
             <div class="flex items-center gap-3.5">
-              <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
-                <i data-lucide="phone-call" class="w-5 h-5"></i>
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-accent shrink-0">
+                <i data-lucide="phone-call" class="w-4 h-4"></i>
               </div>
               <div>
-                <div class="text-[11px] text-slate-400 font-mono">Số điện thoại / Zalo:</div>
-                <div class="flex items-center gap-3 mt-0.5">
-                  <a href="tel:0328206839" class="text-sm sm:text-base font-bold text-emerald-400 hover:underline font-mono">0328206839</a>
-                  <a href="https://zalo.me/0328206839" target="_blank" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-mono border border-emerald-500/30 hover:bg-emerald-500/30 transition-colors">Chat Zalo Ngay</a>
+                <div class="text-[10px] text-slate-400 font-mono">Số điện thoại / Zalo:</div>
+                <div class="flex items-center gap-2.5 mt-0.5">
+                  <a href="tel:0328206839" class="text-xs sm:text-sm font-bold text-accent hover:underline font-mono">0328206839</a>
+                  <a href="https://zalo.me/0328206839" target="_blank" class="tactile-btn px-2 py-0.5 rounded-full bg-accent-dim text-accent text-[11px] font-mono border border-accent/20 hover:bg-accent hover:text-black">Chat Zalo</a>
                 </div>
               </div>
             </div>
 
             <!-- Email -->
             <div class="flex items-center gap-3.5">
-              <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
-                <i data-lucide="mail-check" class="w-5 h-5"></i>
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
+                <i data-lucide="mail" class="w-4 h-4"></i>
               </div>
               <div>
-                <div class="text-[11px] text-slate-400 font-mono">Email nhận thông báo trực tiếp:</div>
-                <a href="mailto:txt6485@gmail.com" class="text-sm sm:text-base font-bold text-brand-neon hover:underline font-mono">txt6485@gmail.com</a>
+                <div class="text-[10px] text-slate-400 font-mono">Email liên hệ:</div>
+                <a href="mailto:txt6485@gmail.com" class="text-xs sm:text-sm font-bold text-accent hover:underline font-mono">txt6485@gmail.com</a>
               </div>
             </div>
+
           </div>
 
-          <!-- Nút hành động liên hệ nhanh -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-            <a href="https://zalo.me/0328206839" target="_blank" class="py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black text-sm font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-500/20">
+          <!-- Quick Action Buttons -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <a href="https://zalo.me/0328206839" target="_blank" class="tactile-btn py-3 px-4 rounded-xl bg-accent hover:bg-accent-hover text-black text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-glow-sm">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
               <span>Nhắn Zalo: 0328206839</span>
             </a>
 
-            <a href="mailto:txt6485@gmail.com?subject=Liên hệ hợp tác cùng Lê Hoàng Vũ" class="py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-all">
-              <i data-lucide="mail" class="w-4 h-4 text-brand-neon"></i>
+            <a href="mailto:txt6485@gmail.com?subject=Liên hệ hợp tác cùng Lê Hoàng Vũ" class="tactile-btn py-3 px-4 rounded-xl bg-surface-elevated hover:bg-white/10 border border-white/10 text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-accent"></i>
               <span>Gửi Email: txt6485@gmail.com</span>
             </a>
           </div>
@@ -962,44 +911,44 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="border-t border-slate-800/80 bg-slate-950 py-10 text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+  <footer class="border-t border-white/10 bg-surface-base py-8 text-xs text-slate-500">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center gap-2 font-mono">
-        <span class="w-2 h-2 rounded-full bg-brand-neon"></span>
-        <span>Lê Hoàng Vũ &copy; 2026 • Đại Học Văn Hiến</span>
+        <span class="w-2 h-2 rounded-full bg-accent"></span>
+        <span>Lê Hoàng Vũ &copy; 2026 • ĐH Văn Hiến</span>
       </div>
-      <div class="flex items-center gap-4 text-slate-400">
+      <div class="flex items-center gap-3 text-slate-400 font-mono text-[11px]">
         <span>Gen Z Marketer (27/11/2004)</span>
         <span>•</span>
         <span>Agency Creative x Web Builder</span>
         <span>•</span>
-        <span class="text-brand-neon font-mono">100% Handcrafted Code</span>
+        <span class="text-accent">0328206839</span>
       </div>
     </div>
   </footer>
 
-  <!-- FLOATING LIVE CONSOLE -->
-  <div id="martech-debugger" class="fixed bottom-4 right-4 z-50 transition-all duration-300 max-w-[340px] sm:max-w-[400px] w-full">
-    <div class="bg-slate-900 border border-slate-700/80 rounded-t-xl px-3 py-2 flex items-center justify-between cursor-pointer shadow-2xl backdrop-blur-md" onclick="toggleDebugger()">
+  <!-- FLOATING REALTIME EVENT LOGGER (CONSERVED MARTECH DEBUGGER) -->
+  <div id="martech-debugger" class="fixed bottom-4 right-4 z-50 transition-all duration-300 max-w-[340px] sm:max-w-[380px] w-full">
+    <div class="bg-surface-card border border-white/10 rounded-t-xl px-3 py-2 flex items-center justify-between cursor-pointer shadow-2xl backdrop-blur-md" onclick="toggleDebugger()">
       <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
         <span class="text-[11px] font-mono font-bold text-slate-200">Live Tracking Console</span>
       </div>
       <div class="flex items-center gap-2">
-        <span id="event-count-badge" class="px-1.5 py-0.2 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300">1 event</span>
+        <span id="event-count-badge" class="px-1.5 py-0.2 rounded text-[10px] font-mono bg-accent-dim text-accent border border-accent/20">1 event</span>
         <i id="debugger-chevron" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
       </div>
     </div>
 
-    <div id="debugger-body" class="bg-black/95 border-x border-b border-slate-700/80 rounded-b-xl p-3 font-mono text-[11px] text-slate-300 space-y-2 max-h-56 overflow-y-auto">
-      <div class="text-[10px] text-slate-500 flex justify-between pb-1 border-b border-slate-800">
+    <div id="debugger-body" class="bg-[#060a12]/95 border-x border-b border-white/10 rounded-b-xl p-3 font-mono text-[11px] text-slate-300 space-y-2 max-h-52 overflow-y-auto">
+      <div class="text-[10px] text-slate-500 flex justify-between pb-1 border-b border-white/10">
         <span>REALTIME_EVENT_LOG</span>
         <button onclick="clearDebugger(event)" class="text-slate-400 hover:text-rose-400">clear</button>
       </div>
       <div id="debugger-log-container" class="space-y-1.5"></div>
-      <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-[10px] text-slate-400">
-        <span>Meta Pixel Simulation</span>
-        <button onclick="testPingEvent(event)" class="px-2 py-0.5 rounded bg-brand-neon/20 hover:bg-brand-neon/30 text-brand-neon border border-brand-neon/30">
+      <div class="pt-2 border-t border-white/10 flex justify-between items-center text-[10px] text-slate-400">
+        <span>Meta Pixel Simulator</span>
+        <button onclick="testPingEvent(event)" class="tactile-btn px-2 py-0.5 rounded bg-accent-dim hover:bg-accent text-accent hover:text-black border border-accent/30 font-mono">
           + Test Fire Lead
         </button>
       </div>
@@ -1008,30 +957,30 @@
 
   <!-- MODAL PREVIEW -->
   <div id="demo-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+    <div class="bg-surface-card border border-white/10 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
         <h3 id="modal-title" class="font-bold text-white text-base">Xem Dự Án Demo</h3>
         <button onclick="closeDemoModal()" class="text-slate-400 hover:text-white p-1">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
-      <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed"></p>
-      <div class="p-3 bg-black/60 rounded-xl font-mono text-xs text-brand-neon border border-brand-neon/20">
-        Bạn có thể mở trực tiếp trang web đang chạy trên trình duyệt hoặc liên hệ với tôi để cùng trao đổi sâu hơn.
+      <p id="modal-desc" class="text-slate-300 text-xs sm:text-sm leading-relaxed"></p>
+      <div class="p-3 bg-surface-base rounded-xl font-mono text-xs text-accent border border-accent/20">
+        Bạn có thể mở trực tiếp website đang chạy hoặc liên hệ trực tiếp với tôi qua SĐT / Zalo 0328206839.
       </div>
       <div class="flex justify-end gap-2 pt-2">
-        <button onclick="closeDemoModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-200 text-xs font-semibold hover:bg-slate-700">
+        <button onclick="closeDemoModal()" class="tactile-btn px-4 py-1.5 rounded-lg bg-surface-elevated text-slate-200 text-xs font-semibold hover:bg-white/10 border border-white/10">
           Đóng
         </button>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- JAVASCRIPT LOGIC (100% PRESERVED & ENHANCED) -->
   <script>
     lucide.createIcons();
 
-    // MOBILE MENU DRAWER TOGGLE
+    // MOBILE MENU TOGGLE
     function toggleMobileMenu() {
       const drawer = document.getElementById('mobile-menu-drawer');
       const isHidden = drawer.classList.toggle('hidden');
@@ -1171,7 +1120,7 @@
       }
     });
 
-    // 3. WORKFLOW STEPS
+    // 3. WORKFLOW STEPS INTERACTION
     const workflowSteps = {
       1: {
         badge: "Agency Creative Phase",
@@ -1210,11 +1159,11 @@
     function selectWorkflowStep(stepNum) {
       document.querySelectorAll('.workflow-btn').forEach((btn, idx) => {
         if (idx + 1 === stepNum) {
-          btn.classList.add('border-brand-neon', 'bg-brand-neon/10');
-          btn.classList.remove('border-slate-800');
+          btn.classList.add('border-accent', 'bg-accent-dim');
+          btn.classList.remove('border-white/10', 'bg-surface-base');
         } else {
-          btn.classList.remove('border-brand-neon', 'bg-brand-neon/10');
-          btn.classList.add('border-slate-800');
+          btn.classList.remove('border-accent', 'bg-accent-dim');
+          btn.classList.add('border-white/10', 'bg-surface-base');
         }
       });
 
@@ -1222,21 +1171,21 @@
       const container = document.getElementById('step-content-display');
 
       container.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center animate-fadeIn">
-          <div class="md:col-span-7 space-y-4">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-neon/10 text-brand-neon font-mono text-xs">
-              <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-7 space-y-3">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-accent-dim text-accent font-mono text-xs border border-accent/20">
+              <i data-lucide="layers" class="w-3 h-3"></i>
               ${data.badge}
             </div>
-            <h4 class="text-xl font-bold text-white">${data.title}</h4>
-            <p class="text-sm text-slate-300 leading-relaxed">${data.desc}</p>
-            <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
-              ${data.checks.map(c => `<span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-brand-neon"></i> ${c}</span>`).join('')}
+            <h3 class="text-lg sm:text-xl font-bold text-white">${data.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${data.desc}</p>
+            <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400 pt-1">
+              ${data.checks.map(c => `<span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-accent"></i> ${c}</span>`).join('')}
             </div>
           </div>
-          <div class="md:col-span-5 bg-slate-900/80 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300">
+          <div class="md:col-span-5 bg-[#090e18] p-4 rounded-xl border border-white/5 font-mono text-xs text-slate-300">
             <div class="text-slate-500 mb-2">${data.codeTitle}</div>
-            <pre class="text-emerald-400 whitespace-pre-wrap leading-relaxed">${data.codeSnippet}</pre>
+            <pre class="text-accent whitespace-pre-wrap leading-relaxed">${data.codeSnippet}</pre>
           </div>
         </div>
       `;
@@ -1247,16 +1196,15 @@
 
     // 4. CV DOWNLOAD
     document.getElementById('btn-download-cv').addEventListener('click', () => {
-      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      confetti({ particleCount: 90, spread: 65, origin: { y: 0.6 } });
       logEvent('Meta Pixel', 'Download_CV', { candidate: 'Le_Hoang_Vu_CV.pdf' });
       alert("Đã ghi nhận thao tác tải CV của Lê Hoàng Vũ! Bạn có thể gắn link file CV PDF vào thuộc tính href trong code.");
     });
 
-
-    // 6. MODAL
+    // 5. MODAL LOGIC
     function triggerDemoModal(title) {
       document.getElementById('modal-title').textContent = title;
-      document.getElementById('modal-desc').textContent = `Chi tiết dự án "${title}" do tôi xây dựng và triển khai thực tế. Bạn có thể mở trực tiếp liên kết website ở nút bấm bên cạnh.`;
+      document.getElementById('modal-desc').textContent = `Chi tiết dự án "${title}" do tôi trực tiếp xây dựng và tối ưu. Bạn có thể mở liên kết trang web thực tế đang chạy trực tuyến hoặc liên hệ với tôi qua SĐT / Zalo: 0328206839.`;
       document.getElementById('demo-modal').classList.remove('hidden');
       logEvent('Meta Pixel', 'View_Project_Detail', { project: title });
     }
