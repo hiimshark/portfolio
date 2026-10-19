@@ -140,6 +140,11 @@
 
       <!-- Right CTAs -->
       <div class="flex items-center gap-2.5 shrink-0">
+        <a href="Le_Hoang_Vu_CV.pdf" download="Le_Hoang_Vu_Tech_Driven_Marketer_CV.pdf" onclick="logCustomPixelEvent('Download_CV', { source: 'nav_header' })" class="tactile-btn hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs border border-slate-200/80 whitespace-nowrap transition-colors">
+          <i data-lucide="file-down" class="w-3.5 h-3.5 text-blue-600"></i>
+          <span>Tải CV PDF</span>
+        </a>
+
         <a href="#contact" class="tactile-btn hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-900 hover:bg-blue-600 text-white font-semibold text-xs shadow-sm whitespace-nowrap transition-colors">
           <span>Hợp tác ngay</span>
           <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
@@ -164,6 +169,10 @@
       <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-100">Vũ khí kỹ thuật & Kỹ năng</a>
       <a href="#calculator" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-100">CRO Simulator Engine</a>
       <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-emerald-700 hover:bg-emerald-50 font-bold">Liên hệ trực tiếp</a>
+      <a href="Le_Hoang_Vu_CV.pdf" download="Le_Hoang_Vu_Tech_Driven_Marketer_CV.pdf" onclick="toggleMobileMenu(); logCustomPixelEvent('Download_CV', { source: 'mobile_drawer' })" class="block px-3 py-2 rounded-xl text-xs text-blue-700 bg-blue-50/80 hover:bg-blue-100 font-bold flex items-center justify-between">
+        <span>Tải CV PDF (Lê Hoàng Vũ)</span>
+        <i data-lucide="file-down" class="w-4 h-4 text-blue-600"></i>
+      </a>
     </div>
   </header>
 
@@ -202,10 +211,10 @@
             <i data-lucide="arrow-down" class="w-4 h-4"></i>
           </a>
 
-          <button id="btn-download-cv" class="tactile-btn px-5 py-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200/80 text-slate-800 font-semibold text-sm shadow-sm transition-colors flex items-center gap-2">
+          <a href="Le_Hoang_Vu_CV.pdf" download="Le_Hoang_Vu_Tech_Driven_Marketer_CV.pdf" id="btn-download-cv" class="tactile-btn px-5 py-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200/80 text-slate-800 font-semibold text-sm shadow-sm transition-colors flex items-center gap-2">
             <i data-lucide="file-down" class="w-4 h-4 text-blue-600"></i>
             <span>Tải CV PDF (Lê Hoàng Vũ)</span>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -270,6 +279,13 @@
                 <span class="text-slate-400">Khu vực:</span>
                 <span class="text-slate-800 truncate">Tân Phú, TP.HCM</span>
               </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-200/80 w-full">
+              <a href="Le_Hoang_Vu_CV.pdf" download="Le_Hoang_Vu_Tech_Driven_Marketer_CV.pdf" onclick="logCustomPixelEvent('Download_CV', { source: 'about_card' })" class="tactile-btn w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-colors">
+                <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+                <span>Tải CV PDF (Lê Hoàng Vũ)</span>
+              </a>
             </div>
           </div>
 
@@ -1206,15 +1222,20 @@
           </div>
 
           <!-- Quick Action Buttons -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            <a href="https://zalo.me/0328206839" target="_blank" class="tactile-btn py-3 px-5 rounded-full bg-slate-900 hover:bg-emerald-600 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition-colors">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            <a href="https://zalo.me/0328206839" target="_blank" class="tactile-btn py-3 px-4 rounded-full bg-slate-900 hover:bg-emerald-600 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition-colors">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
               <span>Nhắn Zalo: 0328206839</span>
             </a>
 
-            <a href="mailto:txt6485@gmail.com?subject=Liên hệ hợp tác cùng Lê Hoàng Vũ" class="tactile-btn py-3 px-5 rounded-full bg-white hover:bg-slate-50 border border-slate-200/80 text-slate-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-sm transition-colors">
+            <a href="mailto:txt6485@gmail.com?subject=Liên hệ hợp tác cùng Lê Hoàng Vũ" class="tactile-btn py-3 px-4 rounded-full bg-white hover:bg-slate-50 border border-slate-200/80 text-slate-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-sm transition-colors">
               <i data-lucide="mail" class="w-4 h-4 text-blue-600"></i>
-              <span>Gửi Email: txt6485@gmail.com</span>
+              <span>Gửi Email: txt6485</span>
+            </a>
+
+            <a href="Le_Hoang_Vu_CV.pdf" download="Le_Hoang_Vu_Tech_Driven_Marketer_CV.pdf" onclick="logCustomPixelEvent('Download_CV', { source: 'contact_section' })" class="tactile-btn py-3 px-4 rounded-full bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white border border-blue-200/80 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition-colors">
+              <i data-lucide="file-down" class="w-4 h-4"></i>
+              <span>Tải CV PDF Đầy Đủ</span>
             </a>
           </div>
 
@@ -1435,11 +1456,13 @@
     });
 
     // 3. CV DOWNLOAD
-    document.getElementById('btn-download-cv').addEventListener('click', () => {
-      confetti({ particleCount: 90, spread: 65, origin: { y: 0.6 } });
-      logEvent('Meta Pixel CAPI', 'Download_CV', { candidate: 'Le_Hoang_Vu_CV.pdf', source: 'header_hero' });
-      alert("Đã ghi nhận thao tác tải CV của Lê Hoàng Vũ! Bạn có thể gắn link file CV PDF vào thuộc tính href trong code.");
-    });
+    const btnCv = document.getElementById('btn-download-cv');
+    if (btnCv) {
+      btnCv.addEventListener('click', () => {
+        confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+        logEvent('Meta Pixel CAPI', 'Download_CV', { file: 'Le_Hoang_Vu_CV.pdf', source: 'header_hero' });
+      });
+    }
 
     // 4. MODAL LOGIC
     function triggerDemoModal(title) {
