@@ -102,6 +102,16 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
+
+    /* Soundwave visualizer animation */
+    @keyframes soundwave {
+      0%, 100% { height: 3px; }
+      50% { height: 12px; }
+    }
+    .wave-playing span:nth-child(1) { animation: soundwave 1s ease-in-out infinite 0.1s; }
+    .wave-playing span:nth-child(2) { animation: soundwave 1s ease-in-out infinite 0.35s; }
+    .wave-playing span:nth-child(3) { animation: soundwave 1s ease-in-out infinite 0.2s; }
+    .wave-playing span:nth-child(4) { animation: soundwave 1s ease-in-out infinite 0.45s; }
   </style>
 </head>
 <body class="apple-ambient font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen relative overflow-x-hidden">
@@ -1260,6 +1270,47 @@
     </div>
   </footer>
 
+  <!-- FLOATING LOFI AMBIENT PLAYER (Apple Glass Style) -->
+  <div id="lofi-player-widget" class="fixed bottom-16 sm:bottom-4 left-4 z-40 transition-all duration-300">
+    <div class="bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-full pl-2 pr-3.5 py-1.5 flex items-center gap-2.5 shadow-apple-soft hover:shadow-md transition-all">
+      
+      <!-- Play / Pause Button -->
+      <button id="lofi-play-btn" onclick="toggleLofiMusic()" class="w-8 h-8 rounded-full bg-slate-900 hover:bg-blue-600 text-white flex items-center justify-center transition-colors shadow-sm shrink-0 cursor-pointer" aria-label="Phát nhạc Lofi">
+        <i id="lofi-icon-play" data-lucide="play" class="w-3.5 h-3.5 ml-0.5"></i>
+        <i id="lofi-icon-pause" data-lucide="pause" class="w-3.5 h-3.5 hidden"></i>
+      </button>
+
+      <!-- Track Info & Visualizer -->
+      <div class="flex items-center gap-2 cursor-pointer select-none" onclick="toggleLofiMusic()">
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5">
+            <span class="text-[11px] font-bold text-slate-800 leading-tight">Lofi Ambient</span>
+            <span id="lofi-live-dot" class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+          </div>
+          <span id="lofi-status-label" class="text-[9px] font-mono text-slate-400">Bật nhạc thư giãn</span>
+        </div>
+
+        <!-- Animated Soundwave Bars -->
+        <div id="lofi-soundwaves" class="flex items-end gap-[2px] h-3 w-3.5 opacity-40 ml-1">
+          <span class="w-[2px] bg-blue-600 rounded-full h-1 transition-all duration-200"></span>
+          <span class="w-[2px] bg-blue-600 rounded-full h-2.5 transition-all duration-200"></span>
+          <span class="w-[2px] bg-blue-600 rounded-full h-1.5 transition-all duration-200"></span>
+          <span class="w-[2px] bg-blue-600 rounded-full h-3 transition-all duration-200"></span>
+        </div>
+      </div>
+
+      <!-- Mute / Unmute Button -->
+      <button id="lofi-mute-btn" onclick="toggleLofiMute(event)" class="text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition-colors cursor-pointer" title="Âm lượng">
+        <i id="lofi-vol-icon" data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+      </button>
+
+      <!-- Hidden Audio Element -->
+      <audio id="lofi-audio" preload="metadata" loop>
+        <source src="lofi.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+
   <!-- FLOATING REALTIME EVENT LOGGER (CONSERVED TRACKING CONSOLE) -->
   <div id="martech-debugger" class="fixed bottom-4 right-4 z-50 transition-all duration-300 max-w-[340px] sm:max-w-[380px] w-full">
     <div class="bg-white border border-slate-200/90 rounded-t-2xl px-4 py-2.5 flex items-center justify-between cursor-pointer shadow-apple-soft" onclick="toggleDebugger()">
@@ -1472,6 +1523,70 @@
 
     function closeDemoModal() {
       document.getElementById('demo-modal').classList.add('hidden');
+    }
+
+    // 5. LOFI AMBIENT MUSIC CONTROLLER
+    const lofiAudio = document.getElementById('lofi-audio');
+    let isLofiPlaying = false;
+
+    function toggleLofiMusic() {
+      if (!lofiAudio) return;
+
+      if (lofiAudio.paused) {
+        lofiAudio.volume = 0.35;
+        lofiAudio.play().then(() => {
+          isLofiPlaying = true;
+          updateLofiUI(true);
+          logEvent('Ambient.Audio', 'Lofi_Music_Play', { track: 'lofi_chill_walk', volume: 0.35 });
+        }).catch(err => {
+          console.warn('Playback notice:', err);
+        });
+      } else {
+        lofiAudio.pause();
+        isLofiPlaying = false;
+        updateLofiUI(false);
+        logEvent('Ambient.Audio', 'Lofi_Music_Pause', { track: 'lofi_chill_walk' });
+      }
+    }
+
+    function toggleLofiMute(e) {
+      if (e) e.stopPropagation();
+      if (!lofiAudio) return;
+
+      lofiAudio.muted = !lofiAudio.muted;
+      const volIcon = document.getElementById('lofi-vol-icon');
+      if (volIcon) {
+        volIcon.setAttribute('data-lucide', lofiAudio.muted ? 'volume-x' : 'volume-2');
+        lucide.createIcons();
+      }
+    }
+
+    function updateLofiUI(playing) {
+      const playIcon = document.getElementById('lofi-icon-play');
+      const pauseIcon = document.getElementById('lofi-icon-pause');
+      const liveDot = document.getElementById('lofi-live-dot');
+      const statusLabel = document.getElementById('lofi-status-label');
+      const soundwaves = document.getElementById('lofi-soundwaves');
+
+      if (playing) {
+        playIcon?.classList.add('hidden');
+        pauseIcon?.classList.remove('hidden');
+        liveDot?.classList.remove('bg-slate-300');
+        liveDot?.classList.add('bg-emerald-500', 'animate-pulse');
+        if (statusLabel) statusLabel.textContent = 'Đang phát • Chill beats';
+        soundwaves?.classList.add('wave-playing');
+        soundwaves?.classList.remove('opacity-40');
+        soundwaves?.classList.add('opacity-100');
+      } else {
+        playIcon?.classList.remove('hidden');
+        pauseIcon?.classList.add('hidden');
+        liveDot?.classList.add('bg-slate-300');
+        liveDot?.classList.remove('bg-emerald-500', 'animate-pulse');
+        if (statusLabel) statusLabel.textContent = 'Bật nhạc thư giãn';
+        soundwaves?.classList.remove('wave-playing');
+        soundwaves?.classList.add('opacity-40');
+        soundwaves?.classList.remove('opacity-100');
+      }
     }
   </script>
 </body>
