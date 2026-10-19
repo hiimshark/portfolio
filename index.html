@@ -122,15 +122,19 @@
 
       <!-- Desktop Links (Single Line) -->
       <nav class="hidden md:flex items-center gap-1 text-xs font-semibold text-slate-600">
-        <a href="#about" class="px-3 py-1.5 rounded-full hover:text-slate-900 hover:bg-slate-100 transition-colors whitespace-nowrap">Hồ sơ</a>
-        <a href="#experience" class="px-3 py-1.5 rounded-full hover:text-slate-900 hover:bg-slate-100 transition-colors whitespace-nowrap">Kinh nghiệm</a>
-        <a href="#projects" class="px-3 py-1.5 rounded-full hover:text-slate-900 hover:bg-slate-100 transition-colors whitespace-nowrap">Dự án Live</a>
-        <a href="#skills" class="px-3 py-1.5 rounded-full hover:text-slate-900 hover:bg-slate-100 transition-colors whitespace-nowrap">Kỹ năng</a>
-        <a href="#calculator" class="px-3 py-1.5 rounded-full text-brand-600 hover:bg-brand-50 transition-colors flex items-center gap-1.5 whitespace-nowrap">
+        <a href="#about" class="px-2.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-slate-100 transition-colors whitespace-nowrap">Hồ sơ</a>
+        <a href="#experience" class="px-2.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-slate-100 transition-colors whitespace-nowrap">Kinh nghiệm</a>
+        <a href="#ads-cockpit" class="px-2.5 py-1.5 rounded-full text-brand-600 hover:bg-brand-50 transition-colors flex items-center gap-1.5 whitespace-nowrap font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-growth-500 animate-pulse"></span>
+          Ads Cockpit
+        </a>
+        <a href="#projects" class="px-2.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-slate-100 transition-colors whitespace-nowrap">Dự án Live</a>
+        <a href="#skills" class="px-2.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-slate-100 transition-colors whitespace-nowrap">Kỹ năng</a>
+        <a href="#calculator" class="px-2.5 py-1.5 rounded-full text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition-colors flex items-center gap-1.5 whitespace-nowrap">
           <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
           CRO Simulator
         </a>
-        <a href="#contact" class="px-3 py-1.5 rounded-full text-growth-700 hover:bg-growth-50 transition-colors whitespace-nowrap">Liên hệ</a>
+        <a href="#contact" class="px-2.5 py-1.5 rounded-full text-growth-700 hover:bg-growth-50 transition-colors whitespace-nowrap">Liên hệ</a>
       </nav>
 
       <!-- Quick Action CTA -->
@@ -151,6 +155,10 @@
     <div id="mobile-menu-drawer" class="hidden md:hidden max-w-5xl mx-auto mt-2 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl p-3 space-y-1 shadow-lg">
       <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-100">Hồ sơ & Giới thiệu</a>
       <a href="#experience" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-100">Kinh nghiệm thực chiến</a>
+      <a href="#ads-cockpit" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-brand-600 hover:bg-brand-50 font-bold flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-growth-500 animate-pulse"></span>
+        Meta Ads Cockpit (Live Data)
+      </a>
       <a href="#projects" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-100">Dự án Web & Ads Live</a>
       <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-100">Vũ khí kỹ thuật & Kỹ năng</a>
       <a href="#calculator" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-xs text-brand-600 hover:bg-brand-50 flex items-center gap-2">
@@ -445,6 +453,111 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- SECTION: META ADS COCKPIT (BÁO CÁO FACEBOOK ADS REAL-TIME) -->
+    <section id="ads-cockpit" class="scroll-mt-24">
+      <div class="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-mono font-bold mb-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-growth-500 animate-ping"></span>
+            Live Cloud Integration • Supabase Connected
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Meta Ads Cockpit: Báo Cáo Facebook Ads Real-Time
+          </h2>
+          <p class="text-slate-500 text-xs sm:text-sm mt-1">
+            Hệ thống dashboard trực tuyến do tôi phát triển và triển khai để minh bạch 100% số liệu chi tiêu, CPM và CPA chiến dịch Facebook Ads.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="https://fb-ads-dashboard-pearl-chi.vercel.app/" target="_blank"
+            class="tactile-btn px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm transition-colors">
+            <span>Mở Full Dashboard</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Ribbon from Real Dashboard -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-subtle">
+          <span class="text-[10px] font-mono text-slate-400 uppercase block font-bold">Tổng Chi Tiêu Chu Kỳ</span>
+          <div class="text-lg sm:text-xl font-extrabold text-slate-900 font-mono mt-0.5">1.366.654 đ</div>
+          <span class="text-[10px] text-slate-500 block mt-0.5">Kế hoạch: 1.440.000 đ</span>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-subtle">
+          <span class="text-[10px] font-mono text-slate-400 uppercase block font-bold">CPA Thực Tế Toàn Chiến Dịch</span>
+          <div class="text-lg sm:text-xl font-extrabold text-growth-600 font-mono mt-0.5">17.083 đ / đơn</div>
+          <span class="text-[10px] text-slate-500 block mt-0.5">80 lượt click đặt mua sách</span>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-subtle">
+          <span class="text-[10px] font-mono text-slate-400 uppercase block font-bold">CPM Quảng Cáo Tiếp Cận</span>
+          <div class="text-lg sm:text-xl font-extrabold text-brand-600 font-mono mt-0.5">6.500 đ</div>
+          <span class="text-[10px] text-slate-500 block mt-0.5">Độc giả mới diện rộng</span>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-subtle">
+          <span class="text-[10px] font-mono text-slate-400 uppercase block font-bold">Chi Phí Bám Đuổi Video</span>
+          <div class="text-lg sm:text-xl font-extrabold text-indigo-600 font-mono mt-0.5">9 đ / lượt</div>
+          <span class="text-[10px] text-slate-500 block mt-0.5">9.545 lượt video 2s ThruPlay</span>
+        </div>
+      </div>
+
+      <!-- Embedded Interactive Browser Mockup with Real App -->
+      <div class="light-card rounded-3xl overflow-hidden shadow-card border-brand-500/25">
+        <!-- Mockup Browser Header -->
+        <div class="bg-slate-100/90 border-b border-slate-200 px-4 py-3 flex items-center justify-between gap-3 text-xs font-mono">
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+          </div>
+
+          <!-- URL Bar with Verified Domain -->
+          <div class="flex-1 max-w-lg mx-auto bg-white border border-slate-200 rounded-full px-3 py-1 flex items-center justify-between text-slate-600 text-[11px] shadow-sm">
+            <div class="flex items-center gap-1.5 truncate">
+              <i data-lucide="lock" class="w-3 h-3 text-growth-600 shrink-0"></i>
+              <span class="text-slate-800 font-semibold truncate">https://fb-ads-dashboard-pearl-chi.vercel.app/</span>
+            </div>
+            <a href="https://fb-ads-dashboard-pearl-chi.vercel.app/" target="_blank" class="text-brand-600 hover:text-brand-700 ml-2 shrink-0" aria-label="Mở link ngoài">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <div class="hidden sm:flex items-center gap-2 text-[11px] text-slate-500">
+            <span class="w-2 h-2 rounded-full bg-growth-500 animate-pulse"></span>
+            <span>Live Interactive Web App</span>
+          </div>
+        </div>
+
+        <!-- Live Embedded Iframe -->
+        <div class="relative bg-white w-full h-[560px] sm:h-[640px] lg:h-[700px] overflow-hidden">
+          <iframe 
+            src="https://fb-ads-dashboard-pearl-chi.vercel.app/" 
+            title="Meta Ads Cockpit Real-time Dashboard"
+            class="w-full h-full border-0"
+            loading="lazy"
+            allow="clipboard-write">
+          </iframe>
+        </div>
+
+        <!-- Bottom Action Strip -->
+        <div class="bg-slate-50 p-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 font-mono">
+          <div class="flex items-center gap-2">
+            <i data-lucide="database" class="w-4 h-4 text-brand-600"></i>
+            <span>Nguồn dữ liệu: Kết nối trực tiếp Supabase Cloud và tài khoản Meta Ads thực tế.</span>
+          </div>
+          <a href="https://fb-ads-dashboard-pearl-chi.vercel.app/" target="_blank"
+            class="text-brand-600 hover:underline font-bold flex items-center gap-1">
+            <span>Mở toàn màn hình tại Vercel</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
       </div>
     </section>
 
