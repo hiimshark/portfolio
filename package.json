@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-le-hoang-vu",
+  "version": "1.0.0",
+  "description": "Portfolio Le Hoang Vu - Growth & Performance Marketer",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Le Hoang Vu",
+  "license": "MIT"
+}
