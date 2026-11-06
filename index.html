@@ -1739,6 +1739,33 @@
     lucide.createIcons();
 
     // MOBILE MENU TOGGLE
+    // CV MODAL CONTROLS (XEM CV TRỰC TUYẾN)
+    function openCvModal() {
+      const modal = document.getElementById('cv-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 40, spread: 45, origin: { y: 0.6 } });
+        }
+      }
+    }
+
+    function closeCvModal() {
+      const modal = document.getElementById('cv-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCvModal();
+        if (typeof closeDemoModal === 'function') closeDemoModal();
+      }
+    });
+
     function toggleMobileMenu() {
       const drawer = document.getElementById('mobile-menu-drawer');
       const isHidden = drawer.classList.toggle('hidden');
@@ -1788,8 +1815,10 @@
     const eventCountBadge = document.getElementById('event-count-badge');
 
     function logEvent(source, eventName, payload = {}) {
-      eventCount++;
-      eventCountBadge.textContent = eventCount + ' event' + (eventCount > 1 ? 's' : '');
+      if (typeof eventCountBadge !== 'undefined' && eventCountBadge) {
+        eventCount++;
+        eventCountBadge.textContent = eventCount + ' event' + (eventCount > 1 ? 's' : '');
+      }
 
       const logRow = document.createElement('div');
       logRow.className = 'border-l-2 border-[#34C759] pl-2 py-0.5';
